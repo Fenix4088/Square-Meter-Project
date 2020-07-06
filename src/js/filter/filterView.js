@@ -1,5 +1,5 @@
 // Ф-я рендера фильтра
-export function render () {
+export function render() {
     const markup = `<form method="GET" class="container p-0">
     <div class="heading-1">Выбор квартир:</div>
     <div class="filter">
@@ -115,5 +115,5 @@ export function render () {
         <button class="filter__reset">Сбросить фильтр</button>
     </div>
 </form>`;
-    document.querySelector('#app').insertAdjacentHTML('afterbegin', markup)
+    document.querySelector("#app").insertAdjacentHTML("afterbegin", markup);
 }
