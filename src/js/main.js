@@ -1,3 +1,9 @@
+import homePage from "./pages/homePage.js";
+import singlItem from "./pages/singlItemPage.js";
+import favouritesPage from "./pages/favouritesPage.js";
+import bidsPage from "./pages/bidsPage.js";
+import errorPage from "./pages/errorPage.js";
+
 // Массив с маршрутами
 const routes = [
     { path: "/", component: homePage },
@@ -18,15 +24,15 @@ function router() {
     // Обращаемся к адресу в адрессной строке
     const pathArray = location.hash.split("/");
     // Устанавлеваем текущий маршрут
-    let currentPath = pathArray[0] === "" ? '/' : pathArray[1];
-    currentPath = currentPath === "" ? '/' : currentPath;
+    let currentPath = pathArray[0] === "" ? "/" : pathArray[1];
+    currentPath = currentPath === "" ? "/" : currentPath;
 
     const { component = errorPage } = findComponentByPath(currentPath, routes) || {};
     component();
 }
 
 // Запускаем роутер в случае изменения hash (то есть перехода по ссылке)
-window.addEventListener('hashchange', router);
+window.addEventListener("hashchange", router);
 
 // Запускаем роутер в случае загрузки страници
-window.addEventListener('load', router)
+window.addEventListener("load", router);
