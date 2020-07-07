@@ -4,6 +4,12 @@ import favouritesPage from "./pages/favouritesPage.js";
 import bidsPage from "./pages/bidsPage.js";
 import errorPage from "./pages/errorPage.js";
 
+// * Обьект состояния приложения
+const state = {}
+// FIXME: for testing
+window.state = state;
+
+// * Router
 // Массив с маршрутами
 const routes = [
     { path: "/", component: homePage },
@@ -23,12 +29,13 @@ function findComponentByPath(path, routes) {
 function router() {
     // Обращаемся к адресу в адрессной строке
     const pathArray = location.hash.split("/");
-    // Устанавлеваем текущий маршрут
+    // Устанавлеваем текущий маршрутx
     let currentPath = pathArray[0] === "" ? "/" : pathArray[1];
     currentPath = currentPath === "" ? "/" : currentPath;
 
     const { component = errorPage } = findComponentByPath(currentPath, routes) || {};
-    component();
+    // Вызов компонента роутера, то есть страници
+    component(state);
 }
 // ! Решение через обьект
 /*
@@ -43,6 +50,7 @@ function findComponentByPath(path, routes) {
 }
 currentPath = pathArray[0] && pathArray[1] ? pathArray[1] : '/';
 */
+
 // Запускаем роутер в случае изменения hash (то есть перехода по ссылке)
 window.addEventListener("hashchange", router);
 

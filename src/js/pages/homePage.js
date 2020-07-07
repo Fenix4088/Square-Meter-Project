@@ -1,6 +1,6 @@
 import filter from "./../filter/filterController.js";
 
-export default function () {
+export default function (state) {
     // Запуск формы фильтра
-    filter();
+    filter(state);
 }
