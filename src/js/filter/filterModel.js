@@ -7,7 +7,6 @@ export default class Filter {
             const response = await fetch(queryString);
             const data = await response.json();
             this.params = await data;
-            console.log("Filter -> getParams -> this.params", this.params);
         } catch (err) {
             alert(err);
         }
