@@ -8,4 +8,7 @@ export default async function () {
     await state.filter.getParams();
     // Отображаем форму фильтра при инициализации
     view.render(state.filter.params);
+
+    // Делаем запрос на сервер 
+    await state.filter.getResults()
 }

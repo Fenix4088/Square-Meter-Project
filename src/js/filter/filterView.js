@@ -6,8 +6,9 @@ export function render(params) {
         let str = `<option value="${name}">ЖК ${name}</option>`;
         complexNames += str;
     });
-    let rooms = '';
-    params.roomValues.forEach( (value)=> {
+    // Создаем строку которая содержит разметку из input-ов с кол-вом комнат
+    let rooms = "";
+    params.roomValues.forEach((value) => {
         rooms += `
         <input
         name="rooms"
@@ -15,7 +16,7 @@ export function render(params) {
         id="rooms_${value}"
         class="rooms__checkbox"
         value="${value}"
-        /><label for="rooms_${value}" class="rooms__btn">${value}</label>`
+        /><label for="rooms_${value}" class="rooms__btn">${value}</label>`;
     });
 
     const markup = `<form method="GET" class="container p-0">
