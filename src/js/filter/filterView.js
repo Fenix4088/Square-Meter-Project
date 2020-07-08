@@ -1,3 +1,13 @@
+//! Полифил для использования обьекта URLSearchParams
+import "url-search-params-polyfill";
+
+// Элементы для работы
+const elements = {
+    filterSelect: document.getElementsByClassName("filter__dropdown"),
+    filterRooms: document.getElementsByClassName("rooms__checkbox"),
+    filterFields: document.getElementsByClassName("range__input"),
+};
+
 // Ф-я рендера фильтра
 export function render(params) {
     // Создаем строку которая содержит разметку из option-ов с названиями комплексов
@@ -19,7 +29,7 @@ export function render(params) {
         /><label for="rooms_${value}" class="rooms__btn">${value}</label>`;
     });
 
-    const markup = `<form method="GET" class="container p-0">
+    const markup = `<form id="filter-form" method="GET" class="container p-0">
     <div class="heading-1">Выбор квартир:</div>
     <div class="filter">
         <div class="filter__col">
@@ -105,4 +115,43 @@ export function render(params) {
 // Ф-я для отображения количества пказываемых лбьектов на кнопке
 export function changeBtnText(number) {
     document.getElementsByClassName("filter__show")[0].innerText = `Показать ${number} обьектов`;
+}
+
+// Ф-я которая получает данные из формы
+export function getInput() {
+    const searchParams = new URLSearchParams();
+
+    // 1. Значение с select(название комплексов)
+    if (elements.filterSelect[0].value !== "all") {
+        searchParams.append(elements.filterSelect[0].name, elements.filterSelect[0].value);
+    }
+
+    // 2. Параметры комнат - чекбоксы
+    const roomsValues = [];
+    Array.from(elements.filterRooms).forEach((checkbox) => {
+        if (checkbox.value !== "" && checkbox.checked) {
+            roomsValues.push(checkbox.value);
+        }
+    });
+
+    const roomsValuesString = roomsValues.join(",");
+
+    if (roomsValuesString !== "") {
+        searchParams.append("rooms", roomsValuesString);
+    }
+
+    // 3. Значения площадь и цена - input
+    console.log(elements.filterFields);
+    Array.from(elements.filterFields).forEach((input) => {
+        if (input.value !== "") {
+            searchParams.append(input.name, input.value);
+        }
+    });
+    const queryString = searchParams.toString();
+    // Если строка сформировалась то в ее начало добавляем '?'
+    if (queryString) {
+        return '?' + queryString;
+    } else {
+        return '';
+    }
 }

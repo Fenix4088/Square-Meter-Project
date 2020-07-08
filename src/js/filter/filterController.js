@@ -13,4 +13,12 @@ export default async function (state) {
     await state.filter.getResults()
     // Обновляем текст на кнопке
     view.changeBtnText(state.filter.result.length)
+
+    // Прослушка событий формы
+    const form = document.querySelector('#filter-form');
+    form.addEventListener('change', function(e){
+        e.preventDefault();
+        // Записываем сформированную строку запроса в обьект state
+        state.filter.query = view.getInput();
+    }) 
 }
