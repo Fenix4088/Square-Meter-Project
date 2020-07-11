@@ -4,7 +4,7 @@ export default function (state) {
     console.log("Listing started");
     // Рендериг контейнера для карточек при старте
     view.render();
-    // Рендер карточек
+    // Обход массива с результатами, рендер карточек
     state.results.forEach(item => {
         view.renderCard(item);
     });
