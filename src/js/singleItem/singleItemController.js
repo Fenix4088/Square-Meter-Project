@@ -1,9 +1,10 @@
 import SingleItem from "./singleItemModel.js";
+import * as view from "./singleItemView.js";
 
-export default function (state) {
-    console.log("Single Item Controller Started!!!!!");
-
+export default async function (state) {
     // Создаем и записываем класс SingleItem в state приложения
     state.singleItem = new SingleItem(state.routeParams);
-    state.singleItem.getItem();
+    await state.singleItem.getItem();
+    // Рендерим разметку для отдельного обьекта
+    view.render(state.singleItem.result);
 }
