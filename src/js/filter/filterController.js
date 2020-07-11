@@ -36,10 +36,7 @@ export default async function (state) {
 
     form.addEventListener("submit",  function (e) {
         e.preventDefault();
-        state.filter.query = "";
-        // Запрос на сервер за результатом
-        state.filter.getResults();
-        // Обновляем текст на кнопке
-        view.changeBtnText(state.filter.result.length);
+        // при submit  создаем пользовательское событие
+        state.emitter.emit('event:render-listing', {})
     });
 }
