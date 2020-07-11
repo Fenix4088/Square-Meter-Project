@@ -3,13 +3,13 @@ import singlItem from "./pages/singlItemPage.js";
 import favouritesPage from "./pages/favouritesPage.js";
 import bidsPage from "./pages/bidsPage.js";
 import errorPage from "./pages/errorPage.js";
-import EventEmitter from './utils/EventEmitter.js'
+import EventEmitter from "./utils/EventEmitter.js";
 
 // * Обьект состояния приложения
 const state = {
     results: [],
     emitter: new EventEmitter(),
-}
+};
 // FIXME: for testing
 window.state = state;
 

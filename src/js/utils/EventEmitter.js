@@ -24,17 +24,3 @@ export default class EventEmitter {
     }
 }
 
-// let input = document.querySelector('input[type="text"]');
-// let button = document.querySelector("button");
-// let h1 = document.querySelector("h1");
-
-// let emitter = new EventEmitter();
-
-// emitter.subscribe("event:name-changed", (obj) => {
-//     h1.innerHTML = `Your name is ${obj.name}`;
-// });
-// console.log("emitter", emitter);
-
-// button.addEventListener("click", () => {
-//     emitter.emit("event:name-changed", { name: input.value });
-// });

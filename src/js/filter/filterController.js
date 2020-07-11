@@ -16,16 +16,20 @@ export default async function (state) {
 
     // Прослушка событий формы
     const form = document.querySelector("#filter-form");
+    // Изменение формы
     form.addEventListener("change", async function (e) {
         e.preventDefault();
         // Записываем сформированную строку запроса в обьект state
         state.filter.query = view.getInput();
         // Запрос на сервер за результатом
         await state.filter.getResults();
+        // Сохраняем полученные обьекты в общий state
+        state.results = state.filter.result;
         // Обновляем текст на кнопке
         view.changeBtnText(state.filter.result.length);
     });
 
+    // Сброс формы
     form.addEventListener("reset", async function () {
         state.filter.query = "";
         // Запрос на сервер за результатом
@@ -34,9 +38,10 @@ export default async function (state) {
         view.changeBtnText(state.filter.result.length);
     });
 
-    form.addEventListener("submit",  function (e) {
+    // Submit формы
+    form.addEventListener("submit", function (e) {
         e.preventDefault();
         // при submit  создаем пользовательское событие
-        state.emitter.emit('event:render-listing', {})
+        state.emitter.emit("event:render-listing", {});
     });
 }
