@@ -24,10 +24,13 @@ export default async function (state) {
         await state.filter.getResults();
         // Обновляем текст на кнопке
         view.changeBtnText(state.filter.result.length);
-
     });
 
-    form.addEventListener('reset', function (e) {
-        
-    })
+    form.addEventListener("reset", async function (e) {
+        state.filter.query = "";
+        // Запрос на сервер за результатом
+        await state.filter.getResults();
+        // Обновляем текст на кнопке
+        view.changeBtnText(state.filter.result.length);
+    });
 }
