@@ -6,6 +6,7 @@ const elements = {
     filterSelect: document.getElementsByClassName("filter__dropdown"),
     filterRooms: document.getElementsByClassName("rooms__checkbox"),
     filterFields: document.getElementsByClassName("range__input"),
+    filterSubmit: document.getElementsByClassName("filter__show"),
 };
 
 // Ф-я рендера фильтра
@@ -114,7 +115,16 @@ export function render(params) {
 
 // Ф-я для отображения количества пказываемых обьектов на кнопке
 export function changeBtnText(number) {
-    document.getElementsByClassName("filter__show")[0].innerText = `Показать ${number} обьектов`;
+    let message;
+    const btn = elements.filterSubmit[0];
+    if (number > 0) {
+        message = `Показать ${number} обьектов`;
+        btn.disabled = false;
+    } else {
+        message = `Обьекты не найдены. Измените условие поиска`;
+        btn.disabled = true;
+    }
+    btn.innerText = message;
 }
 
 // Ф-я которая получает данные из формы
@@ -149,8 +159,8 @@ export function getInput() {
     const queryString = searchParams.toString();
     // Если строка сформировалась то в ее начало добавляем '?'
     if (queryString) {
-        return '?' + queryString;
+        return "?" + queryString;
     } else {
-        return '';
+        return "";
     }
 }

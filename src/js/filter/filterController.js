@@ -26,10 +26,19 @@ export default async function (state) {
         view.changeBtnText(state.filter.result.length);
     });
 
-    form.addEventListener("reset", async function (e) {
+    form.addEventListener("reset", async function () {
         state.filter.query = "";
         // Запрос на сервер за результатом
         await state.filter.getResults();
+        // Обновляем текст на кнопке
+        view.changeBtnText(state.filter.result.length);
+    });
+
+    form.addEventListener("submit",  function (e) {
+        e.preventDefault();
+        state.filter.query = "";
+        // Запрос на сервер за результатом
+        state.filter.getResults();
         // Обновляем текст на кнопке
         view.changeBtnText(state.filter.result.length);
     });
