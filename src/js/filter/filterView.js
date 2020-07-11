@@ -106,13 +106,13 @@ export function render(params) {
     </div>
     <div class="filter__buttons">
         <button class="filter__show">Показать объекты</button>
-        <button class="filter__reset">Сбросить фильтр</button>
+        <button type="reset" class="filter__reset">Сбросить фильтр</button>
     </div>
 </form>`;
     document.querySelector("#app").insertAdjacentHTML("afterbegin", markup);
 }
 
-// Ф-я для отображения количества пказываемых лбьектов на кнопке
+// Ф-я для отображения количества пказываемых обьектов на кнопке
 export function changeBtnText(number) {
     document.getElementsByClassName("filter__show")[0].innerText = `Показать ${number} обьектов`;
 }
@@ -141,7 +141,6 @@ export function getInput() {
     }
 
     // 3. Значения площадь и цена - input
-    console.log(elements.filterFields);
     Array.from(elements.filterFields).forEach((input) => {
         if (input.value !== "") {
             searchParams.append(input.name, input.value);

@@ -1,5 +1,7 @@
 export default class Filter {
-    constructor() {}
+    constructor() {
+        this.query = '';
+    }
     // Метод который отправляет запрос на сервер и получат от него значения
     async getParams() {
         try {
@@ -14,11 +16,11 @@ export default class Filter {
 
     async getResults() {
         try {
-            const queryString = "http://jsproject.webcademy.ru/items";
+            const queryString = `http://jsproject.webcademy.ru/items${this.query}`;
             const response = await fetch(queryString);
             const data = await response.json();
             this.result = await data;
-            console.log("Filter -> getResults -> this.result", this.result);
+            console.log(this.result);
         } catch (err) {
             alert(err);
         }
