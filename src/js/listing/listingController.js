@@ -5,12 +5,16 @@ export default function (state) {
     // Рендериг контейнера для карточек при старте
     view.render();
     // Обход массива с результатами, рендер карточек
-    state.results.forEach(item => {
+    state.results.forEach((item) => {
         view.renderCard(item);
     });
     // Подписка на пользовательское событие
     state.emitter.subscribe("event:render-listing", () => {
-        console.log("FUNCTION STARTEd");
-        console.log(state.results);
+        // Очистка контейнера с карточками
+        view.clearListingContainer();
+        // Обход массива с результатами, рендер карточек
+        state.results.forEach((item) => {
+            view.renderCard(item);
+        });
     });
 }

@@ -15,7 +15,6 @@ export function render() {
 
 // Ф-я рендеринга карточки
 export function renderCard(object) {
-    console.log(object);
     const listingContainer = document.querySelector("#listingContainer");
     const markup = `
     <article class="col-md-4">
@@ -68,4 +67,10 @@ export function renderCard(object) {
     </article>`;
 
     listingContainer.insertAdjacentHTML("beforeend", markup);
+}
+
+// Ф-я очистки разметки
+export function clearListingContainer() {
+    const listingContainer = document.querySelector("#listingContainer");
+    listingContainer.innerHTML = "";
 }
