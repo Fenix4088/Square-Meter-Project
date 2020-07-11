@@ -37,6 +37,9 @@ function router() {
     let currentPath = pathArray[0] === "" ? "/" : pathArray[1];
     currentPath = currentPath === "" ? "/" : currentPath;
 
+    // Возможный параметр для компонента, например id карточки по которой кликнули
+    state.routeParams = pathArray[2] ? pathArray[2] : '';
+
     const { component = errorPage } = findComponentByPath(currentPath, routes) || {};
     // Вызов компонента роутера, то есть страници
     component(state);
