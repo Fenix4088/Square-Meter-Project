@@ -11,6 +11,9 @@ export default async function (state) {
 
     // Делаем запрос на сервер
     await state.filter.getResults();
+    // Сохраняем полученные обьекты в общий state
+    state.results = state.filter.result;
+    
     // Обновляем текст на кнопке
     view.changeBtnText(state.filter.result.length);
 
