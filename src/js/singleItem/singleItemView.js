@@ -204,7 +204,7 @@ export function clearInput() {
     document.querySelector("#form-name").value = "";
     document.querySelector("#form-phone").value = "";
 }
-
+// Ф-я для отображения иконок после отправки формы
 export function showIcon(status) {
     if (status) {
         document.querySelector(".accept-icon").classList.remove("none");
@@ -218,7 +218,7 @@ export function showIcon(status) {
         }, 1000);
     }
 }
-
+// Ф-я отображения сообщений об ошибке на Input-ах
 export function showWarning(response, responseStatus) {
     if (responseStatus) {
         document.querySelector('.warning-name').innerText = '';
