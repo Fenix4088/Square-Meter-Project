@@ -183,3 +183,11 @@ export function showModal() {
 export function hideModal() {
     document.querySelector(".modal-wrapper").classList.add("none");
 }
+
+// Ф-я которая собирает данные из формы модального окна
+export function getInput() {
+    const formData = {};
+    formData.name = document.querySelector("#form-name").value;
+    formData.phone = document.querySelector("#form-phone").value;
+    return formData;
+}

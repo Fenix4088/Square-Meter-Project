@@ -28,4 +28,17 @@ export default async function (state) {
             view.hideModal();
         }
     });
+
+    // Отправка формы
+    document.querySelector('.modal__form').addEventListener('submit', async function (e) {
+        e.preventDefault();
+        // Сбор данных из формы модального окна
+        const formData = view.getInput();
+        // Отправка данных на сервер
+        await state.singleItem.submitForm(formData)
+    })
+
+
+
+
 }
