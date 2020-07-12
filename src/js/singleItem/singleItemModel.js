@@ -27,6 +27,6 @@ export default class SingleItem {
 
         const data = await response.json();
         this.response = data;
-        console.log("SingleItem -> submitForm -> this.response", this.response)
+
     }
 }

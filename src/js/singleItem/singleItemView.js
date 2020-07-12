@@ -107,8 +107,8 @@ export function render(object) {
                         Заявка на бронирование
                     </div>
                     <div class="modal__details">
-                        Квартира <span>96</span> в Первом квартале Дом 5
-                        <div class="modal__details-art">ГЕН-112-42</div>
+                    ${object.title}<span> номер ${object.flat_number}</span> Номер дома: ${object.building}
+                        <div class="modal__details-art">${object.scu}</div>
                     </div>
                 </div>
 
@@ -120,7 +120,7 @@ export function render(object) {
                                 class="modal__form-input-label"
                                 for="form-phone"
                             >
-                                Имя
+                                Имя<span class="warning-name warning ml-10"></span>
                             </label>
                             <input
                                 type="text"
@@ -136,7 +136,7 @@ export function render(object) {
                                 class="modal__form-input-label"
                                 for="form-phone"
                             >
-                                Телефон
+                                Телефон<span class="warning-phone warning ml-10"></span>
                             </label>
                             <input
                                 type="text"
@@ -170,8 +170,15 @@ export function render(object) {
         </div>
     `;
 
+    // Иконки успех и отказ
+    const markupIcons = `
+    <img class="accept-icon none" src="./img/icons/checkIcon.svg" alt="">
+    <img class="denial-icon none" src="./img/icons/denialIcon.svg" alt="">
+    `;
+
     appContainer.insertAdjacentHTML("beforeend", markup);
     appContainer.insertAdjacentHTML("beforeend", makrupModal);
+    appContainer.insertAdjacentHTML("afterbegin", markupIcons);
 }
 
 // Ф-я для отображения модального окна
@@ -190,4 +197,34 @@ export function getInput() {
     formData.name = document.querySelector("#form-name").value;
     formData.phone = document.querySelector("#form-phone").value;
     return formData;
+}
+
+// Ф-я очистки формы модального окна после отправки
+export function clearInput() {
+    document.querySelector("#form-name").value = "";
+    document.querySelector("#form-phone").value = "";
+}
+
+export function showIcon(status) {
+    if (status) {
+        document.querySelector(".accept-icon").classList.remove("none");
+        setTimeout(() => {
+            document.querySelector(".accept-icon").classList.add("none");
+        }, 1000);
+    } else {
+        document.querySelector(".denial-icon").classList.remove("none");
+        setTimeout(() => {
+            document.querySelector(".denial-icon").classList.add("none");
+        }, 1000);
+    }
+}
+
+export function showWarning(response, responseStatus) {
+    if (responseStatus) {
+        document.querySelector('.warning-name').innerText = '';
+        document.querySelector('.warning-phone').innerText = '';
+    } else {
+        document.querySelector('.warning-name').innerText = response.errors[0];
+        document.querySelector('.warning-phone').innerText = response.errors[1];
+    }
 }

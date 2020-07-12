@@ -12,6 +12,7 @@ export default async function (state) {
 
     // Открытие модального окна
     document.querySelector(".button-order").addEventListener("click", () => {
+        // const currentObject = state.singleItem.result;
         view.showModal();
     });
 
@@ -30,14 +31,31 @@ export default async function (state) {
     });
 
     // Отправка формы
-    document.querySelector('.modal__form').addEventListener('submit', async function (e) {
+    document.querySelector(".modal__form").addEventListener("submit", async function (e) {
         e.preventDefault();
         // Сбор данных из формы модального окна
         const formData = view.getInput();
         // Отправка данных на сервер
-        await state.singleItem.submitForm(formData)
-    })
+        await state.singleItem.submitForm(formData);
 
+        const response = state.singleItem.response;
+        // Переменная для статуса отправки формы
+        let responseStatus;
+        // Проверка на то какой ответ пришел из сервера, создана ли заявка или нет
+        if (response.message === "Bid Created") {
+            responseStatus = true;
+            view.hideModal();
+            view.clearInput();
+            view.showWarning(response, responseStatus);
+
+        } else if (response.message === "Bid Not Created") {
+            responseStatus = false;
+            view.showWarning(response, responseStatus);
+
+        }
+        // Отобрадение иконки статуса заявки
+        view.showIcon(responseStatus);
+    });
 
 
 

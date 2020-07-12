@@ -1054,6 +1054,21 @@ a.panel.panel--no-hover:hover {
 .modal__close:active {
   background-color: #000000;
 }
+.accept-icon, .denial-icon {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  width: 150px;
+  z-index: 20;
+}
+
+.warning {
+  color: red;
+  font-size: 12px;
+  font-style: italic;
+}
+
 .policy-text {
   font-size: 12px;
 }
