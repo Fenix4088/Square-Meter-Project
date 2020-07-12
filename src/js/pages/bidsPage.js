@@ -1,4 +1,8 @@
+import bids from "./../bids/bidsController.js";
+
 export default function () {
-    const markup = `<div class="container"><h1>BidsPage</h1></div>`;
-    document.querySelector("#app").innerHTML = markup;
+    // Очищаем контейнер app
+    document.querySelector("#app").innerHTML = "";
+    // Запускаем компонент bids
+    bids();
 }
