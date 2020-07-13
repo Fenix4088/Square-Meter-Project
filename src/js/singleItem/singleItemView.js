@@ -237,9 +237,9 @@ export function toggleFavouriteBtn(isFaved) {
     const btn = document.querySelector("#addToFavouriteBtn");
     if (isFaved) {
         btn.classList.add("button-favourite--active");
-        btn.querySelector('span').textContent = 'В избранном'
+        btn.querySelector("span").textContent = "В избранном";
     } else {
         btn.classList.remove("button-favourite--active");
-        btn.querySelector('span').textContent = 'В избранное'
+        btn.querySelector("span").textContent = "В избранное";
     }
 }
