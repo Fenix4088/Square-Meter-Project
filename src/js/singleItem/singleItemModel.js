@@ -8,7 +8,7 @@ export default class SingleItem {
             const queryString = `http://jsproject.webcademy.ru/items/${this.id}`;
             const response = await fetch(queryString);
             const data = await response.json();
-            this.result = await data;
+            this.result = data;
         } catch (error) {
             alert(error);
         }
@@ -27,6 +27,5 @@ export default class SingleItem {
 
         const data = await response.json();
         this.response = data;
-
     }
 }

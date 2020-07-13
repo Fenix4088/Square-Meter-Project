@@ -8,7 +8,7 @@ export default class Filter {
             const queryString = "http://jsproject.webcademy.ru/itemsinfo";
             const response = await fetch(queryString);
             const data = await response.json();
-            this.params = await data;
+            this.params = data;
         } catch (err) {
             alert(err);
         }

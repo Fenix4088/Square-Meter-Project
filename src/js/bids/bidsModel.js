@@ -7,7 +7,7 @@ export default class Bids {
             const queryString = `http://jsproject.webcademy.ru/bids`;
             const result = await fetch(queryString);
             const data = await result.json();
-            this.bids = await data;
+            this.bids = data;
         } catch (error) {
             alert("Error with geting bids");
             console.log(error);

@@ -4,11 +4,13 @@ import favouritesPage from "./pages/favouritesPage.js";
 import bidsPage from "./pages/bidsPage.js";
 import errorPage from "./pages/errorPage.js";
 import EventEmitter from "./utils/EventEmitter.js";
+import Favourites from "./favourites/favouritesModel.js";
 
 // * Обьект состояния приложения
 const state = {
     results: [],
     emitter: new EventEmitter(),
+    favourites: new Favourites(),
 };
 // FIXME: for testing
 window.state = state;
