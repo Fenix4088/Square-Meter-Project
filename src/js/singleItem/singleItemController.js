@@ -60,7 +60,7 @@ export default async function (state) {
     // Клик по кнопке добавить в избранное
     document.querySelector('#addToFavouriteBtn').addEventListener('click', () => {
         // Добавляем id текущего обьекта в массив в state
-        state.favourites.addFav(state.singleItem.id);
+        state.favourites.toggleFav(state.singleItem.id);
     })
 
 
