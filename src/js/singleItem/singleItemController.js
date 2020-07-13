@@ -8,7 +8,7 @@ export default async function (state) {
     // Рендерим разметку для отдельного обьекта
     view.render(state.singleItem.result);
 
-    // Прослушка событий
+    // *Прослушка событий
 
     // Открытие модального окна
     document.querySelector(".button-order").addEventListener("click", () => {
@@ -56,6 +56,12 @@ export default async function (state) {
         // Отобрадение иконки статуса заявки
         view.showIcon(responseStatus);
     });
+
+    // Клик по кнопке добавить в избранное
+    document.querySelector('#addToFavouriteBtn').addEventListener('click', () => {
+        // Добавляем id текущего обьекта в массив в state
+        state.favourites.addFav(state.singleItem.id);
+    })
 
 
 
