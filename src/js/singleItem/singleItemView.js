@@ -1,5 +1,6 @@
 // Ф-я для отображения окна элемента
-export function render(object) {
+export function render(object, isFaved) {
+    console.log("render -> isFaved", isFaved);
     const appContainer = document.querySelector("#app");
 
     const markup = `
@@ -31,8 +32,15 @@ export function render(object) {
                     <div class="object__desc-art">${object.scu}</div>
 
                     <!-- Добавить в избранное -->
-                    <button id="addToFavouriteBtn" class="button-favourite">
-                        <i class="fas fa-heart"></i> <span>В избранное</span>
+                    <button id="addToFavouriteBtn" 
+                    class="
+                    button-favourite
+                    ${isFaved ? "button-favourite--active" : ""}
+                    ">
+                        <i class="fas fa-heart"></i> 
+                        <span>
+                        ${isFaved ? "В избранном" : "В избранное"}
+                        </span>
                     </button>
 
                 </div>
@@ -216,10 +224,22 @@ export function showIcon(status) {
 // Ф-я отображения сообщений об ошибке на Input-ах
 export function showWarning(response, responseStatus) {
     if (responseStatus) {
-        document.querySelector('.warning-name').innerText = '';
-        document.querySelector('.warning-phone').innerText = '';
+        document.querySelector(".warning-name").innerText = "";
+        document.querySelector(".warning-phone").innerText = "";
     } else {
-        document.querySelector('.warning-name').innerText = response.errors[0];
-        document.querySelector('.warning-phone').innerText = response.errors[1];
+        document.querySelector(".warning-name").innerText = response.errors[0];
+        document.querySelector(".warning-phone").innerText = response.errors[1];
+    }
+}
+
+// Ф-я для интерактивной смены класса у кнопки Избранное
+export function toggleFavouriteBtn(isFaved) {
+    const btn = document.querySelector("#addToFavouriteBtn");
+    if (isFaved) {
+        btn.classList.add("button-favourite--active");
+        btn.querySelector('span').textContent = 'В избранном'
+    } else {
+        btn.classList.remove("button-favourite--active");
+        btn.querySelector('span').textContent = 'В избранное'
     }
 }

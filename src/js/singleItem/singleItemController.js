@@ -6,7 +6,7 @@ export default async function (state) {
     state.singleItem = new SingleItem(state.routeParams);
     await state.singleItem.getItem();
     // Рендерим разметку для отдельного обьекта
-    view.render(state.singleItem.result);
+    view.render(state.singleItem.result, state.favourites.isFav(state.singleItem.id));
 
     // *Прослушка событий
 
@@ -47,22 +47,19 @@ export default async function (state) {
             view.hideModal();
             view.clearInput();
             view.showWarning(response, responseStatus);
-
         } else if (response.message === "Bid Not Created") {
             responseStatus = false;
             view.showWarning(response, responseStatus);
-
         }
         // Отобрадение иконки статуса заявки
         view.showIcon(responseStatus);
     });
 
     // Клик по кнопке добавить в избранное
-    document.querySelector('#addToFavouriteBtn').addEventListener('click', () => {
+    document.querySelector("#addToFavouriteBtn").addEventListener("click", () => {
         // Добавляем id текущего обьекта в массив в state
         state.favourites.toggleFav(state.singleItem.id);
-    })
-
-
-
+        // Добавоение активного класса для кнопки
+        view.toggleFavouriteBtn(state.favourites.isFav(state.singleItem.id))
+    });
 }

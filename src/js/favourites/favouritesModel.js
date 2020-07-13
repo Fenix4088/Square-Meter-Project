@@ -2,7 +2,7 @@ export default class Favourites {
     constructor() {
         this.favs = [];
         // работа с LS
-        this.readStorage()
+        this.readStorage();
     }
     // Метод для добавления id текущего элемента в массив state
     addFav(id) {
@@ -27,12 +27,12 @@ export default class Favourites {
 
     // Метод для работы с LS
     saveData() {
-        localStorage.setItem('favs', JSON.stringify(this.favs));
+        localStorage.setItem("favs", JSON.stringify(this.favs));
     }
 
     // Метод для инициализации LS при первой загрузке
-    readStorage () {
-        const storage = JSON.parse(localStorage.getItem('favs'));
+    readStorage() {
+        const storage = JSON.parse(localStorage.getItem("favs"));
         if (storage) this.favs = storage;
     }
 }
