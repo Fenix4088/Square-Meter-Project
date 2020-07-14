@@ -1,4 +1,5 @@
 import FavouritesCards from "./favouritesCardsModel.js";
+import * as view from "./favouritesCardsView.js"
 
 export default async function (state) {
     // Получаем список обьектов которые находятся в избранном
@@ -7,4 +8,7 @@ export default async function (state) {
 
     const favouriteCards = new FavouritesCards(favsList);
     await favouriteCards.getFavs();
+
+    // Отображаем контейнер и карточки
+    view.renderPage(favouriteCards.cards);
 }
