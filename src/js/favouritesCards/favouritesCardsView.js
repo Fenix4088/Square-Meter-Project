@@ -1,6 +1,6 @@
 function renderContainer() {
     const markup = `
-    <div class="container p-0">
+    <div class="container p-0 mb-5">
         <div class="heading-1">Избранное</div>
     </div>
     <div class="cards-wrapper">
@@ -74,4 +74,13 @@ export function renderPage(cards) {
     cards.forEach(card => {
         renderCard(card);
     });
+}
+
+// Ф-я для активизации иконки с сердечком
+export function toggleFavouriteIcon (elementIcon, isFaved) {
+    if (isFaved) {
+        elementIcon.classList.add('card__like--active');
+    } else {
+        elementIcon.classList.remove('card__like--active');
+    }
 }

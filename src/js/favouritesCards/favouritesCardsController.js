@@ -1,5 +1,5 @@
 import FavouritesCards from "./favouritesCardsModel.js";
-import * as view from "./favouritesCardsView.js"
+import * as view from "./favouritesCardsView.js";
 
 export default async function (state) {
     // Получаем список обьектов которые находятся в избранном
@@ -11,4 +11,23 @@ export default async function (state) {
 
     // Отображаем контейнер и карточки
     view.renderPage(favouriteCards.cards);
+
+    // Запускаем прослушку клика на икони "Добавить в избранное"
+    addToFavsListener();
+
+    // Ф-я для работы иконок "Добавить в избранное"
+    function addToFavsListener() {
+        Array.from(document.getElementsByClassName("card__like")).forEach((item) => {
+            item.addEventListener("click", (e) => {
+                e.preventDefault();
+                // Находим ID обьекта по которому кликнули
+                const currentId = e.target.closest(".card").dataset.id;
+                // Добавляем/убираем элемент из избранного
+                state.favourites.toggleFav(currentId);
+
+                // Включаем/выключаем иконку с избранным
+                view.toggleFavouriteIcon(e.target.closest(".card__like"), state.favourites.isFav(currentId));
+            });
+        });
+    }
 }
