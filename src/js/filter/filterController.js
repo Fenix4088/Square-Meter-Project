@@ -37,6 +37,8 @@ export default async function (state) {
         state.filter.query = "";
         // Запрос на сервер за результатом
         await state.filter.getResults();
+        // Обновленные данные по фильтру записываем их в state.result
+        state.results = state.filter.result;
         // Обновляем текст на кнопке
         view.changeBtnText(state.filter.result.length);
     });

@@ -227,8 +227,8 @@ export function showWarning(response, responseStatus) {
         document.querySelector(".warning-name").innerText = "";
         document.querySelector(".warning-phone").innerText = "";
     } else {
-        document.querySelector(".warning-name").innerText = response.errors[0];
-        document.querySelector(".warning-phone").innerText = response.errors[1];
+        document.querySelector(".warning-name").innerText = response.errors[0] || "";
+        document.querySelector(".warning-phone").innerText = response.errors[1] || "";
     }
 }
 

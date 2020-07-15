@@ -9,20 +9,23 @@ export default async function (state) {
     view.render(state.singleItem.result, state.favourites.isFav(state.singleItem.id));
 
     // *Прослушка событий
+    const orderBtn = document.querySelector(".button-order");
+    const modalCloseBtn = document.querySelector(".modal__close");
+    const modalWrapper = document.querySelector(".modal__form");
+    const favouriteBtn = document.querySelector("#addToFavouriteBtn");
 
     // Открытие модального окна
-    document.querySelector(".button-order").addEventListener("click", () => {
-        // const currentObject = state.singleItem.result;
+    orderBtn.addEventListener("click", () => {
         view.showModal();
     });
 
     // Скрытие модального окна - клик по кнопке
-    document.querySelector(".modal__close").addEventListener("click", () => {
+    modalCloseBtn.addEventListener("click", () => {
         view.hideModal();
     });
 
     // Скрытие модального окна - клик оверлею
-    document.querySelector(".modal-wrapper").addEventListener("click", (e) => {
+    modalWrapper.addEventListener("click", (e) => {
         if (e.target.closest(".modal")) {
             return null;
         } else {
@@ -31,14 +34,16 @@ export default async function (state) {
     });
 
     // Отправка формы
-    document.querySelector(".modal__form").addEventListener("submit", async function (e) {
+    modalWrapper.addEventListener("submit", async function (e) {
         e.preventDefault();
         // Сбор данных из формы модального окна
         const formData = view.getInput();
         // Отправка данных на сервер
-        await state.singleItem.submitForm(formData);
-
+        /*
+        await state.singleItem.sendData(formData);
         const response = state.singleItem.response;
+        */
+        const response = await state.singleItem.sendData(formData);
         // Переменная для статуса отправки формы
         let responseStatus;
         // Проверка на то какой ответ пришел из сервера, создана ли заявка или нет
@@ -56,7 +61,7 @@ export default async function (state) {
     });
 
     // Клик по кнопке добавить в избранное
-    document.querySelector("#addToFavouriteBtn").addEventListener("click", () => {
+    favouriteBtn.addEventListener("click", () => {
         // Добавляем id текущего обьекта в массив в state
         state.favourites.toggleFav(state.singleItem.id);
         // Добавоение активного класса для кнопки

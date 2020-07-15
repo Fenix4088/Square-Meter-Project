@@ -12,8 +12,7 @@ const state = {
     emitter: new EventEmitter(),
     favourites: new Favourites(),
 };
-// FIXME: for testing
-window.state = state;
+
 
 // * Router
 // Массив с маршрутами
