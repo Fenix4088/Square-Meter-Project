@@ -6,10 +6,12 @@ export default class FavouritesCards {
     // Метод по созданию строки запроса для избранного
     async getFavs() {
         const ids = this.favsList.toString();
-        const queryString = `http://jsproject.webcademy.ru/items?ids=${ids}`;
-
-        const result = await fetch(queryString);
-        const data = await result.json();
-        this.cards = data;
+        if (ids !== '') {
+            const queryString = `http://jsproject.webcademy.ru/items?ids=${ids}`;
+            console.log(queryString);
+            const result = await fetch(queryString);
+            const data = await result.json();
+            this.cards = data;
+        }
     }
 }

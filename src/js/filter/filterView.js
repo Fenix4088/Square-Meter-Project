@@ -109,7 +109,66 @@ export function render(params) {
         <button class="filter__show">Показать объекты</button>
         <button type="reset" class="filter__reset">Сбросить фильтр</button>
     </div>
-</form>`;
+</form>
+<!-- Sort by -->
+<div class="view-options-wrapper">
+<div class="container">
+    <!-- view-options -->
+    <div class="view-options">
+        <div class="view-options__sort">
+            <label
+                for="sort-cards-by"
+                class="view-options__label"
+                >Сортировать</label
+            >
+            <select
+                id="sort-cards-by"
+                name="sortby"
+                id=""
+                class="view-options__select"
+            >
+                <option value="priceASC">по цене ↑</option>
+                <option value="priceDESC">по цене ↓</option>
+                <option value="squareASC">по площади ↑</option>
+                <option value="squareDESC">по площади ↓</option>
+            </select>
+        </div>
+        <div class="view-options__type">
+            <!-- Cards -->
+            <input
+                type="radio"
+                class="view-options__radio"
+                name="displayType"
+                id="displayCards"
+                value="cards"
+                checked
+            />
+            <label
+                for="displayCards"
+                class="view-options__type-item"
+            >
+                <i class="fas fa-th-large"></i>
+            </label>
+            <!-- List -->
+            <input
+                type="radio"
+                class="view-options__radio"
+                name="displayType"
+                id="displayList"
+                value="list"
+            />
+            <label
+                for="displayList"
+                class="view-options__type-item"
+            >
+                <i class="fas fa-bars"></i>
+            </label>
+        </div>
+    </div>
+    <!-- // view-options -->
+</div>
+</div>
+`;
     document.querySelector("#app").insertAdjacentHTML("afterbegin", markup);
 }
 

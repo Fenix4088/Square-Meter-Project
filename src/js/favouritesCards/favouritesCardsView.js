@@ -71,16 +71,29 @@ function renderCard(object) {
 
 export function renderPage(cards) {
     renderContainer();
-    cards.forEach(card => {
+    cards.forEach((card) => {
         renderCard(card);
     });
 }
 
 // Ф-я для активизации иконки с сердечком
-export function toggleFavouriteIcon (elementIcon, isFaved) {
+export function toggleFavouriteIcon(elementIcon, isFaved) {
     if (isFaved) {
-        elementIcon.classList.add('card__like--active');
+        elementIcon.classList.add("card__like--active");
     } else {
-        elementIcon.classList.remove('card__like--active');
+        elementIcon.classList.remove("card__like--active");
     }
+}
+
+// Ф-я отображения о отсутсвии избранного
+export function showNoFavouritesMessage() {
+    const markup = `                
+    <div class="container">
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <img class="pb-20" src="./img/icons/heartBroken.svg" alt="" />
+        <div class="alert alert-dark">You have no favourites elements, yet :-(</div>
+    </div>
+</div>`;
+
+    document.querySelector("#app").insertAdjacentHTML("beforeend", markup);
 }

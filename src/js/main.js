@@ -11,8 +11,11 @@ const state = {
     results: [],
     emitter: new EventEmitter(),
     favourites: new Favourites(),
+    objectsView: "",
 };
 
+// ! DELETE
+window.state = state;
 
 // * Router
 // Массив с маршрутами

@@ -1,8 +1,9 @@
 // Ф-я для рендеринга контейнера для карточек
 export function render() {
     const markup = `
+      
     <div class="cards-wrapper">
-        <div class="container p-0 pt-5">
+        <div class="container p-0">
             <div id="listingContainer" class="row">
             
             </div>
@@ -13,7 +14,7 @@ export function render() {
     document.querySelector("#app").insertAdjacentHTML("beforeend", markup);
 }
 
-// Ф-я рендеринга карточки
+// Ф-я рендеринга карточки(плитка)
 export function renderCard(object, isFaved) {
     const listingContainer = document.querySelector("#listingContainer");
     const markup = `
@@ -72,6 +73,35 @@ export function renderCard(object, isFaved) {
     </article>`;
 
     listingContainer.insertAdjacentHTML("beforeend", markup);
+}
+// Ф-я рендеринга обьектов в виде полосок
+export function renderPanel(object, isFaved) {
+    const listingContainer = document.querySelector("#listingContainer");
+    const markup = `
+    <a href="#/item/${object.id}" data-id="${object.id}" class="panel" style="width: 100%;">
+            <div class="panel__artikul">${object.scu}</div>
+            <div class="panel__name">
+                <div>ЖК ${object.complex_name}</div>
+            </div>
+            <div class="panel__block">${object.building}</div>
+            <div class="panel__floor">${object.floor}</div>
+            <div class="panel__rooms">${object.rooms}</div>
+            <div class="panel__sq">${object.square} м2</div>
+            <div class="panel__price-per-m">${object.price_sq_m} ₽</div>
+            <div class="panel__price">${object.price_total} ₽</div>
+            <div class="panel__favourite">
+                <div class="
+                card__like
+                ${isFaved ? 'card__like--active' : ''}
+
+                ">
+                    <i class="fas fa-heart"></i>
+                </div>
+            </div>
+        </a>
+    `;
+    listingContainer.insertAdjacentHTML("beforeend", markup);
+
 }
 
 // Ф-я очистки разметки

@@ -9,11 +9,15 @@ export default async function (state) {
     const favouriteCards = new FavouritesCards(favsList);
     await favouriteCards.getFavs();
 
-    // Отображаем контейнер и карточки
-    view.renderPage(favouriteCards.cards);
+    if (favouriteCards.cards !== undefined) {
+        // Отображаем контейнер и карточки
+        view.renderPage(favouriteCards.cards);
 
-    // Запускаем прослушку клика на икони "Добавить в избранное"
-    addToFavsListener();
+        // Запускаем прослушку клика на икони "Добавить в избранное"
+        addToFavsListener();
+    } else {
+        view.showNoFavouritesMessage();
+    }
 
     // Ф-я для работы иконок "Добавить в избранное"
     function addToFavsListener() {
