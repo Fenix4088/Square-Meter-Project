@@ -91,7 +91,7 @@ export function showNoFavouritesMessage() {
     <div class="container">
     <div class="d-flex flex-column justify-content-center align-items-center">
         <img class="pb-20" src="./img/icons/heartBroken.svg" alt="" />
-        <div class="alert alert-dark">You have no favourites elements, yet :-(</div>
+        <div class="alert alert-dark">You have no favourites yet :-(</div>
     </div>
 </div>`;
 

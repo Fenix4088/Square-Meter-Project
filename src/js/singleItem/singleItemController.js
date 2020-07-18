@@ -54,7 +54,7 @@ export default async function (state) {
             view.showWarning(response, responseStatus);
         } else if (response.message === "Bid Not Created") {
             responseStatus = false;
-            view.showWarning(response, responseStatus);
+            view.showWarning(formData, responseStatus);
         }
         // Отобрадение иконки статуса заявки
         view.showIcon(responseStatus);

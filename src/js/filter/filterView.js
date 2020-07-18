@@ -127,10 +127,10 @@ export function render(params) {
                 id=""
                 class="view-options__select"
             >
-                <option value="priceASC">по цене ↑</option>
-                <option value="priceDESC">по цене ↓</option>
-                <option value="squareASC">по площади ↑</option>
-                <option value="squareDESC">по площади ↓</option>
+                <option value="price_total-ASC">по цене ↑</option>
+                <option value="price_total-DESC">по цене ↓</option>
+                <option value="square-ASC">по площади ↑</option>
+                <option value="square-DESC">по площади ↓</option>
             </select>
         </div>
         <div class="view-options__type">

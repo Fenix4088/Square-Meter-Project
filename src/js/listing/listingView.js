@@ -118,3 +118,4 @@ export function toggleFavouriteIcon (elementIcon, isFaved) {
         elementIcon.classList.remove('card__like--active');
     }
 }
+

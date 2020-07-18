@@ -3,40 +3,18 @@ import * as view from "./listingView.js";
 export default function (state) {
     // Рендериг контейнера для карточек при старте
     view.render();
-    // FIXME: 1, 2 Можно создать одну ф-ю
-    // ! 1
-    if (state.filter.filterView === "cards" || !state.filter.filterView) {
-        // Обход массива с результатами, рендер карточек
-        state.results.forEach((item) => {
-            view.renderCard(item, state.favourites.isFav(item.id));
-        });
-    } else {
-        // Обход массива с результатами, рендер панелей
-        state.results.forEach((item) => {
-            view.renderPanel(item, state.favourites.isFav(item.id));
-        });
-    }
-
+    // Выбор в каком виде будут рендериться карточки
+    chooseRenderType(state.results, state.filter.filterView);
     // Запускаем прослушку клика на иконки "Добавить в избранное"
     addToFavsListener();
 
     // Подписка на пользовательское событие
     state.emitter.subscribe("event:render-listing", () => {
+        console.log(state);
         // Очистка контейнера с карточками
         view.clearListingContainer();
-        // ! 2
-
-        // Обход массива с результатами, рендер карточек
-        if (state.filter.filterView === "cards" || !state.filter.filterView) {
-            state.results.forEach((item) => {
-                view.renderCard(item, state.favourites.isFav(item.id));
-            });
-        } else {
-            state.results.forEach((item) => {
-                view.renderPanel(item, state.favourites.isFav(item.id));
-            });
-        }
-
+        // Выбор в каком виде будут рендериться карточки
+        chooseRenderType(state.results, state.filter.filterView);
         // Запускаем прослушку клика на иконки "Добавить в избранное"
         addToFavsListener();
     });
@@ -63,9 +41,41 @@ export default function (state) {
         }
     });
 
+    // Клик по option для сортировки по ценам и площади
+    document.querySelector("#sort-cards-by").addEventListener("click", (e) => {
+        Array.from(e.target.children).forEach((option) => {
+            if (option.selected) {
+                // Сортировка массива в зависимости от выбранного option
+                const sortedArr = sortElements(option.value, state.results);
+
+                sortedArr.forEach((item) => {
+                    // Очистка котейнера с карточками
+                    view.clearListingContainer();
+                    // Выбор в каком виде будут рендериться карточки
+                    chooseRenderType(state.results, state.filter.filterView);
+                    // Запускаем прослушку клика на иконки "Добавить в избранное"
+                    addToFavsListener();
+                });
+            }
+        });
+    });
+
+    // Ф-я сортировки элементов
+    function sortElements(value, arr) {
+        const sortType = value.split("-");
+        arr.sort(function (a, b) {
+            return a[sortType[0]] - b[sortType[0]];
+        });
+
+        if (sortType[1] === "ASC") {
+            return arr;
+        } else {
+            return arr.reverse();
+        }
+    }
+
     // Ф-я для работы иконок "Добавить в избранное"
     function addToFavsListener() {
-        console.log(document.getElementsByClassName("card__like"));
         Array.from(document.getElementsByClassName("card__like")).forEach((item) => {
             item.addEventListener("click", (e) => {
                 e.preventDefault();
@@ -83,5 +93,18 @@ export default function (state) {
                 view.toggleFavouriteIcon(e.target.closest(".card__like"), state.favourites.isFav(currentId));
             });
         });
+    }
+
+    // Ф-я которая определяет в каком виде должны рендерится элементы
+    function chooseRenderType(arr, filterType) {
+        if (filterType === "cards" || !filterType) {
+            arr.forEach((item) => {
+                view.renderCard(item, state.favourites.isFav(item.id));
+            });
+        } else {
+            arr.forEach((item) => {
+                view.renderPanel(item, state.favourites.isFav(item.id));
+            });
+        }
     }
 }

@@ -222,13 +222,26 @@ export function showIcon(status) {
     }
 }
 // Ф-я отображения сообщений об ошибке на Input-ах
-export function showWarning(response, responseStatus) {
+export function showWarning(formData, responseStatus) {
+    // Находим div для сообщения о проверке
+    const warningName = document.querySelector(".warning-name");
+    const warningPhone = document.querySelector(".warning-phone");
+
     if (responseStatus) {
-        document.querySelector(".warning-name").innerText = "";
-        document.querySelector(".warning-phone").innerText = "";
+        warningName.innerText = "";
+        warningPhone.innerText = "";
     } else {
-        document.querySelector(".warning-name").innerText = response.errors[0] || "";
-        document.querySelector(".warning-phone").innerText = response.errors[1] || "";
+        if (formData.name.trim() === "") {
+            warningName.innerText = "Поле Имя обязательно для заполнения!";
+        } else {
+            warningName.innerText = "";
+        }
+
+        if (formData.phone.trim() === "") {
+            warningPhone.innerText = "Поле Телефон обязательно для заполнения!";
+        } else {
+            warningPhone.innerText = "";
+        }
     }
 }
 
