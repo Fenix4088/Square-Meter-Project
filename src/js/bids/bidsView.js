@@ -2,7 +2,7 @@
 function renderContainer () {
     const markup = `
             <div id="bidsHolder" class="container p-0 mb-5">
-                <div class="heading-1">Заявки</div>
+                <div class="heading-1 mb-20">Заявки</div>
             </div>
 
             <!-- panels-wrapper -->

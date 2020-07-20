@@ -10,7 +10,6 @@ export default function (state) {
 
     // Подписка на пользовательское событие
     state.emitter.subscribe("event:render-listing", () => {
-        console.log(state);
         // Очистка контейнера с карточками
         view.clearListingContainer();
         // Выбор в каком виде будут рендериться карточки
