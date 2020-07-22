@@ -7,6 +7,5 @@ export default async function (state) {
 
     await state.bids.getBids();
     // Отображение заявок
-    view.renderBids(state.bids.bids)
-    
+    view.renderBids(state.bids.bids);
 }
