@@ -13,7 +13,6 @@ const state = {
     favourites: new Favourites(),
     objectsView: "",
 };
-window.state = state
 // * Router
 // Массив с маршрутами
 const routes = [
