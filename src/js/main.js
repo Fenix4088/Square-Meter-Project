@@ -13,10 +13,7 @@ const state = {
     favourites: new Favourites(),
     objectsView: "",
 };
-
-// ! DELETE
-window.state = state;
-
+window.state = state
 // * Router
 // Массив с маршрутами
 const routes = [

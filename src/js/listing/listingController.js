@@ -82,8 +82,10 @@ export default function (state) {
                 let currentId;
                 if (e.target.closest(".card")) {
                     currentId = e.target.closest(".card").dataset.id;
+                    console.log("card");
                 } else if (e.target.closest(".panel")) {
                     currentId = e.target.closest(".panel").dataset.id;
+                    console.log("panel");
                 }
                 // Добавляем/убираем элемент из избранного
                 state.favourites.toggleFav(currentId);
