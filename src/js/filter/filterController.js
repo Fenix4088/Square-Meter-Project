@@ -13,7 +13,7 @@ export default async function (state) {
     await state.filter.getResults();
     // Сохраняем полученные обьекты в общий state
     state.results = state.filter.result;
-    
+
     // Обновляем текст на кнопке
     view.changeBtnText(state.filter.result.length);
 

@@ -22,26 +22,31 @@ export default function (state) {
     document.querySelector(".view-options__type").addEventListener("click", (e) => {
         if (e.target.getAttribute("name") === "displayType") {
             // Записываем значение input radio в state
+            console.log(e.target.value);
             state.filter.filterView = e.target.value;
             // Очистка контейнера с карточками
             view.clearListingContainer();
-
             if (e.target.value === "cards") {
                 // Обход массива с результатами, рендер карточек
                 state.results.forEach((item) => {
                     view.renderCard(item, state.favourites.isFav(item.id));
+                    
                 });
             } else {
                 // Обход массива с результатами, рендер карточек
                 state.results.forEach((item) => {
                     view.renderPanel(item, state.favourites.isFav(item.id));
+                    
                 });
             }
+            // Обработка клика по иконке с сердечком
+            addToFavsListener()
         }
     });
 
     // Клик по option для сортировки по ценам и площади
-    document.querySelector("#sort-cards-by").addEventListener("click", (e) => {
+    document.querySelector("#sort-cards-by").addEventListener("change", (e) => {
+        console.log(e.target.children);
         Array.from(e.target.children).forEach((option) => {
             if (option.selected) {
                 // Сортировка массива в зависимости от выбранного option
@@ -61,16 +66,19 @@ export default function (state) {
 
     // Ф-я сортировки элементов
     function sortElements(value, arr) {
-        const sortType = value.split("-");
-        arr.sort(function (a, b) {
-            return a[sortType[0]] - b[sortType[0]];
-        });
+        // const sortType = value.split("-");
+        // arr.sort(function (a, b) {
+        //     return a[sortType[0]] - b[sortType[0]];
+        // });
 
-        if (sortType[1] === "ASC") {
-            return arr;
-        } else {
-            return arr.reverse();
-        }
+        // if (sortType[1] === "ASC") {
+        //     return arr;
+        // } else {
+        //     return arr.reverse();
+        // }
+
+        const [type, dir] = value.split("-");
+        return arr.sort( (a, b) => dir === "ASC" ? a[type] - b[type] : b[type] - a[type]);
     }
 
     // Ф-я для работы иконок "Добавить в избранное"
@@ -82,10 +90,8 @@ export default function (state) {
                 let currentId;
                 if (e.target.closest(".card")) {
                     currentId = e.target.closest(".card").dataset.id;
-                    console.log("card");
                 } else if (e.target.closest(".panel")) {
                     currentId = e.target.closest(".panel").dataset.id;
-                    console.log("panel");
                 }
                 // Добавляем/убираем элемент из избранного
                 state.favourites.toggleFav(currentId);

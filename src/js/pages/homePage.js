@@ -10,7 +10,6 @@ export default async function (state) {
         renderPreloader();
     }
 
-    renderPreloader();
     setTimeout(async function () {
         document.querySelector("#app").innerHTML = "";
 
@@ -19,5 +18,4 @@ export default async function (state) {
         // Запуск листенга(listingController)
         listing(state);
     }, 3000);
-
 }
