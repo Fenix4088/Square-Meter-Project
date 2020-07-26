@@ -63,8 +63,27 @@ export default function (state) {
         });
     });
 
+    // Клик по элементу панельного фильтра
+    document.querySelector(".panels-filter").addEventListener("click", (e) => {
+        if (e.target.hasAttribute("data-filter")) {
+            // Определяем тип (возрастнание / убывание) и имя сортируемого обьекта
+            if (e.target.dataset.status === "" || e.target.dataset.status === "ASC") {
+                e.target.dataset.status = "DSC";
+            } else {
+                e.target.dataset.status = "ASC";
+            }
+            const sortName = e.target.dataset.filter; // sort_name, rooms .....
+            const sortStatus = e.target.dataset.status; // ASC / DSC
+            console.log(sortName, sortStatus);
+            panelFilterSort(sortName, sortStatus);
+            view.clearListingContainer();
+            chooseRenderType(state.results, state.filter.filterView);
+        }
+    });
+
     // Ф-я сортировки элементов
     function sortElements(value, arr) {
+        // * Old version
         // const sortType = value.split("-");
         // arr.sort(function (a, b) {
         //     return a[sortType[0]] - b[sortType[0]];
@@ -75,9 +94,32 @@ export default function (state) {
         // } else {
         //     return arr.reverse();
         // }
-
+        // *modern version
         const [type, dir] = value.split("-");
         return arr.sort((a, b) => (dir === "ASC" ? a[type] - b[type] : b[type] - a[type]));
+    }
+
+    // Сортировка для панельного фильтра
+    function panelFilterSort (name, status) {
+        if (name === "complex_name") {
+            state.results.sort( (a, b) => {
+                if (a[name] > b[name]) {
+                    return -1;
+                }
+                if(a[name] < b[name]) {
+                    return 1;
+                }
+                return 0
+            });
+        } else if (status === "ASC" && name !== "complex_name") {
+            state.results.sort( (a, b) => {
+                return a[name] - b[name]
+            })
+        } else if (status === "DSC" && name !== "complex_name") {
+            state.results.sort( (a, b) => {
+                return b[name] - a[name]
+            })
+        }
     }
 
     // Ф-я для работы иконок "Добавить в избранное"

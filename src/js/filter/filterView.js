@@ -180,7 +180,7 @@ export function render(params) {
             class="panels-filter__element"
             style="width: 160px;"
         >
-            <div class="panels-filter__name" data-filter="complex_name">ЖК</div>
+            <div class="panels-filter__name" data-filter="complex_name" data-status>ЖК</div>
         </div>
         <div
             class="panels-filter__element"
@@ -202,25 +202,25 @@ export function render(params) {
             class="panels-filter__element"
             style="width: 70px;"
         >
-            <div class="panels-filter__name" data-filter="rooms">Комнат</div>
+            <div class="panels-filter__name" data-filter="rooms" data-status>Комнат</div>
         </div>
         <div
             class="panels-filter__element"
             style="width: 80px;"
         >
-            <div class="panels-filter__name" data-filter="square">Площадь</div>
+            <div class="panels-filter__name" data-filter="square" data-status>Площадь</div>
         </div>
         <div
             class="panels-filter__element"
             style="width: 100px;"
         >
-            <div class="panels-filter__name" data-filter="price_sq_m">м2</div>
+            <div class="panels-filter__name" data-filter="price_sq_m" data-status>м2</div>
         </div>
         <div
             class="panels-filter__element"
             style="width: 100px;"
         >
-            <div class="panels-filter__name" data-filter="price_total">Стоимость</div>
+            <div class="panels-filter__name" data-filter="price_total" data-status>Стоимость</div>
         </div>
 
         <div
