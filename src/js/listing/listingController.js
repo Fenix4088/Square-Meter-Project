@@ -21,8 +21,9 @@ export default function (state) {
     // Событие Клик по иконкам отображения обьектов(radio btns)
     document.querySelector(".view-options__type").addEventListener("click", (e) => {
         if (e.target.getAttribute("name") === "displayType") {
+            // Отображение панельного фильтра
+            view.showPanelFilter(e.target);
             // Записываем значение input radio в state
-            console.log(e.target.value);
             state.filter.filterView = e.target.value;
             // Очистка контейнера с карточками
             view.clearListingContainer();
@@ -30,17 +31,15 @@ export default function (state) {
                 // Обход массива с результатами, рендер карточек
                 state.results.forEach((item) => {
                     view.renderCard(item, state.favourites.isFav(item.id));
-                    
                 });
             } else {
                 // Обход массива с результатами, рендер карточек
                 state.results.forEach((item) => {
                     view.renderPanel(item, state.favourites.isFav(item.id));
-                    
                 });
             }
             // Обработка клика по иконке с сердечком
-            addToFavsListener()
+            addToFavsListener();
         }
     });
 
@@ -78,7 +77,7 @@ export default function (state) {
         // }
 
         const [type, dir] = value.split("-");
-        return arr.sort( (a, b) => dir === "ASC" ? a[type] - b[type] : b[type] - a[type]);
+        return arr.sort((a, b) => (dir === "ASC" ? a[type] - b[type] : b[type] - a[type]));
     }
 
     // Ф-я для работы иконок "Добавить в избранное"

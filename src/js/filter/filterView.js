@@ -141,7 +141,6 @@ export function render(params) {
                 name="displayType"
                 id="displayCards"
                 value="cards"
-                checked
             />
             <label
                 for="displayCards"
@@ -166,8 +165,79 @@ export function render(params) {
         </div>
     </div>
     <!-- // view-options -->
+
+    <!-- panel filte -->
+    <div class="panels-filter" style="display: none;">
+        <div
+            class="panels-filter__element"
+            style="width: 120px;"
+        >
+            <div class="panels-filter__name no-filter">
+                Артикул
+            </div>
+        </div>
+        <div
+            class="panels-filter__element"
+            style="width: 160px;"
+        >
+            <div class="panels-filter__name" data-filter="complex_name">ЖК</div>
+        </div>
+        <div
+            class="panels-filter__element"
+            style="width: 70px;"
+        >
+            <div class="panels-filter__name no-filter">
+                Корпус
+            </div>
+        </div>
+        <div
+            class="panels-filter__element"
+            style="width: 70px;"
+        >
+            <div class="panels-filter__name no-filter">
+                Этаж
+            </div>
+        </div>
+        <div
+            class="panels-filter__element"
+            style="width: 70px;"
+        >
+            <div class="panels-filter__name" data-filter="rooms">Комнат</div>
+        </div>
+        <div
+            class="panels-filter__element"
+            style="width: 80px;"
+        >
+            <div class="panels-filter__name" data-filter="square">Площадь</div>
+        </div>
+        <div
+            class="panels-filter__element"
+            style="width: 100px;"
+        >
+            <div class="panels-filter__name" data-filter="price_sq_m">м2</div>
+        </div>
+        <div
+            class="panels-filter__element"
+            style="width: 100px;"
+        >
+            <div class="panels-filter__name" data-filter="price_total">Стоимость</div>
+        </div>
+
+        <div
+            class="panels-filter__element"
+            style="width: 100px;"
+        >
+            <div class="panels-filter__name no-filter">
+                Избранное
+            </div>
+        </div>
+    </div>
+<!-- //panel filte -->
 </div>
+
+
 </div>
+
 `;
     document.querySelector("#app").insertAdjacentHTML("afterbegin", markup);
 }

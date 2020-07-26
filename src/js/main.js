@@ -12,7 +12,9 @@ const state = {
     emitter: new EventEmitter(),
     favourites: new Favourites(),
     objectsView: "",
+    panelFilterType: "",
 };
+window.state = state;
 // * Router
 // Массив с маршрутами
 const routes = [

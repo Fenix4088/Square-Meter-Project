@@ -2,14 +2,14 @@
 export function render() {
     const markup = `
       
-    <div class="cards-wrapper">
-        <div class="container p-0">
-            <div id="listingContainer" class="row">
-            
+        <div class="cards-wrapper">
+            <div class="container p-0">
+                <div id="listingContainer" class="row">
+                
+                </div>
             </div>
-        </div>
-    </div>          
-            `;
+        </div>          
+                `;
 
     document.querySelector("#app").insertAdjacentHTML("beforeend", markup);
 }
@@ -18,6 +18,7 @@ export function render() {
 export function renderCard(object, isFaved) {
     const listingContainer = document.querySelector("#listingContainer");
     const markup = `
+    
     <article class="col-md-4">
         <!-- card -->
         <a href="#/item/${object.id}" class="card" data-id="${object.id}">
@@ -28,7 +29,7 @@ export function renderCard(object, isFaved) {
                 <div 
                 class="
                 card__like
-                ${isFaved ? 'card__like--active' : ''}
+                ${isFaved ? "card__like--active" : ""}
                 "
                 >
                     <i class="fas fa-heart"></i>
@@ -74,6 +75,16 @@ export function renderCard(object, isFaved) {
 
     listingContainer.insertAdjacentHTML("beforeend", markup);
 }
+
+// Отображение панельного фильтра
+export function showPanelFilter (target) {
+    const panelFilter = document.querySelector(".panels-filter")
+    if (target.value === "list" && target.checked) {
+        panelFilter.style.display = "flex";
+    } else {
+        panelFilter.style.display = "none";
+    }
+}
 // Ф-я рендеринга обьектов в виде полосок
 export function renderPanel(object, isFaved) {
     const listingContainer = document.querySelector("#listingContainer");
@@ -92,7 +103,7 @@ export function renderPanel(object, isFaved) {
             <div class="panel__favourite">
                 <div class="
                 card__like
-                ${isFaved ? 'card__like--active' : ''}
+                ${isFaved ? "card__like--active" : ""}
 
                 ">
                     <i class="fas fa-heart"></i>
@@ -101,7 +112,6 @@ export function renderPanel(object, isFaved) {
         </a>
     `;
     listingContainer.insertAdjacentHTML("beforeend", markup);
-
 }
 
 // Ф-я очистки разметки
@@ -111,11 +121,10 @@ export function clearListingContainer() {
 }
 
 // Ф-я для активизации иконки с сердечком
-export function toggleFavouriteIcon (elementIcon, isFaved) {
+export function toggleFavouriteIcon(elementIcon, isFaved) {
     if (isFaved) {
-        elementIcon.classList.add('card__like--active');
+        elementIcon.classList.add("card__like--active");
     } else {
-        elementIcon.classList.remove('card__like--active');
+        elementIcon.classList.remove("card__like--active");
     }
 }
-
