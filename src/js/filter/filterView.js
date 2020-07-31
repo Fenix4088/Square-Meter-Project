@@ -1,5 +1,6 @@
 //! Полифил для использования обьекта URLSearchParams
 import "url-search-params-polyfill";
+import { filterData, saveValues } from "./filterModel.js";
 
 // Элементы для работы
 const elements = {
@@ -14,7 +15,7 @@ export function render(params) {
     // Создаем строку которая содержит разметку из option-ов с названиями комплексов
     let complexNames = "";
     params.complexNames.forEach((name) => {
-        let str = `<option value="${name}">ЖК ${name}</option>`;
+        let str = `<option value="${name}" data-complex>ЖК ${name}</option>`;
         complexNames += str;
     });
     // Создаем строку которая содержит разметку из input-ов с кол-вом комнат
@@ -35,8 +36,8 @@ export function render(params) {
     <div class="filter">
         <div class="filter__col">
             <div class="filter__label">Выбор проекта:</div>
-            <select name="complex" id="" class="filter__dropdown">
-                <option value="all">Все проекты</option>
+            <select name="complex" id="select" class="filter__dropdown">
+                <option value="all" data-complex>Все проекты</option>
                 ${complexNames}
             </select>
         </div>
@@ -259,17 +260,24 @@ export function changeBtnText(number) {
 // Ф-я которая получает данные из формы
 export function getInput() {
     const searchParams = new URLSearchParams();
-
     // 1. Значение с select(название комплексов)
+
     if (elements.filterSelect[0].value !== "all") {
         searchParams.append(elements.filterSelect[0].name, elements.filterSelect[0].value);
+        // Созранение значения в обьект фильтра filtrData
+        filterData.complex = elements.filterSelect[0].value;
     }
 
+    if (elements.filterSelect[0].value === "all") {
+        filterData.complex = "all";
+    }
     // 2. Параметры комнат - чекбоксы
     const roomsValues = [];
     Array.from(elements.filterRooms).forEach((checkbox) => {
         if (checkbox.value !== "" && checkbox.checked) {
             roomsValues.push(checkbox.value);
+            // Созранение значения в обьект фильтра filtrData
+            filterData.rooms = roomsValues;
         }
     });
 
@@ -283,13 +291,51 @@ export function getInput() {
     Array.from(elements.filterFields).forEach((input) => {
         if (input.value !== "") {
             searchParams.append(input.name, input.value);
+            // Созранение значения в обьект фильтра filtrData
+            filterData[input.name] = input.value;
         }
     });
+    // Сохраняем обьект фильтра в LS
+    localStorage.setItem("Filter Data", JSON.stringify(filterData));
+
+    // Формируем строку запроса
     const queryString = searchParams.toString();
     // Если строка сформировалась то в ее начало добавляем '?'
     if (queryString) {
         return "?" + queryString;
     } else {
         return "";
+    }
+}
+
+// Обновление input фильтра из LS
+export function setInputs() {
+    const savedFilterData = JSON.parse(localStorage.getItem("Filter Data"));
+    if (savedFilterData !== null) {
+        // Устанавливаем значение option в соответсвии с LS
+        Array.from(elements.filterSelect[0].children).forEach((item) => {
+            item.value === savedFilterData.complex ? (item.selected = true) : false;
+        });
+
+        // Комнаты
+        Array.from(elements.filterRooms).forEach((room) => {
+            savedFilterData.rooms.forEach((savedRoomNumber) => {
+                savedRoomNumber === room.value ? (room.checked = true) : false;
+            });
+        });
+
+        // Остальные поля фильтра
+        Object.keys(savedFilterData).forEach((key) => {
+            Array.from(elements.filterFields).forEach((input) => {
+                // Сравниваем ключи созраненного обьекта с input.name и если они совпадают то input.value = значению из LS
+                if (key === input.name) {
+                    input.value = savedFilterData[key];
+                }
+            });
+        });
+
+        return true;
+    } else {
+        return false;
     }
 }

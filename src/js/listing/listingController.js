@@ -74,7 +74,6 @@ export default function (state) {
             }
             const sortName = e.target.dataset.filter; // sort_name, rooms .....
             const sortStatus = e.target.dataset.status; // ASC / DSC
-            console.log(sortName, sortStatus);
             panelFilterSort(sortName, sortStatus);
             view.clearListingContainer();
             chooseRenderType(state.results, state.filter.filterView);

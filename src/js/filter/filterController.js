@@ -8,7 +8,11 @@ export default async function (state) {
     await state.filter.getParams();
     // Отображаем форму фильтра при инициализации
     view.render(state.filter.params);
-
+    // Создаеться строка запроса при условии что в LS есть данные по фильтру
+    if (view.setInputs()) {
+        // Записываем сформированную строку запроса в обьект state
+        state.filter.query = view.getInput();
+    }
     // Делаем запрос на сервер
     await state.filter.getResults();
     // Сохраняем полученные обьекты в общий state
@@ -34,6 +38,8 @@ export default async function (state) {
 
     // Сброс формы
     form.addEventListener("reset", async function () {
+        localStorage.removeItem('Filter Data');
+        
         state.filter.query = "";
         // Запрос на сервер за результатом
         await state.filter.getResults();

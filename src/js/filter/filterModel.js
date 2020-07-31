@@ -1,6 +1,6 @@
 export default class Filter {
     constructor() {
-        this.query = '';
+        this.query = "";
     }
     // Метод который отправляет запрос на сервер и получат от него значения
     async getParams() {
@@ -25,3 +25,18 @@ export default class Filter {
         }
     }
 }
+
+export function saveValues(name, value) {
+    name = value;
+}
+
+export const filterData = {
+    complex: "",
+    rooms: [],
+    sqmin: "",
+    sqmax: "",
+    pricemin: "",
+    pricemax: "",
+};
+
+

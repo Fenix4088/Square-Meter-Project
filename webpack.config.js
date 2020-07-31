@@ -9,7 +9,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: '[name].bundle.js',
+        filename: 'js/[name].bundle.js',
     },
     devServer: {
         contentBase: './dist',
