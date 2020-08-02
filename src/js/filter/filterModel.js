@@ -30,13 +30,11 @@ export function saveValues(name, value) {
     name = value;
 }
 
-export const filterData = {
-    complex: "",
-    rooms: [],
-    sqmin: "",
-    sqmax: "",
-    pricemin: "",
-    pricemax: "",
-};
+//  function getFormData() {
+//     const savedFilterData = JSON.parse(localStorage.getItem("Filter Data"));
+//     return savedFilterData;
+// }
 
-
+// export function setInputsValues () {
+//     const savedValues = getFormData();
+// }

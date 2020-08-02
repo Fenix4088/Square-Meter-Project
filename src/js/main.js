@@ -13,6 +13,14 @@ const state = {
     favourites: new Favourites(),
     objectsView: "",
     panelFilterType: "",
+    filterData : {
+        complex: "",
+        rooms: [],
+        sqmin: "",
+        sqmax: "",
+        pricemin: "",
+        pricemax: "",
+    },
 };
 window.state = state;
 // * Router

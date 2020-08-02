@@ -17,5 +17,6 @@ export default async function (state) {
         await filter(state);
         // Запуск листенга(listingController)
         listing(state);
+
     }, 3000);
 }

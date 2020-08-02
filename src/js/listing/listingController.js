@@ -3,8 +3,11 @@ import * as view from "./listingView.js";
 export default function (state) {
     // Рендериг контейнера для карточек при старте
     view.render();
+    // if(savedFilterRenderType != null) {
+    //     state.renderType = savedFilterRenderType;
+    // }
     // Выбор в каком виде будут рендериться карточки
-    chooseRenderType(state.results, state.filter.filterView);
+    chooseRenderType(state.results, state.renderType);
     // Запускаем прослушку клика на иконки "Добавить в избранное"
     addToFavsListener();
 
@@ -13,7 +16,7 @@ export default function (state) {
         // Очистка контейнера с карточками
         view.clearListingContainer();
         // Выбор в каком виде будут рендериться карточки
-        chooseRenderType(state.results, state.filter.filterView);
+        chooseRenderType(state.results, state.renderType);
         // Запускаем прослушку клика на иконки "Добавить в избранное"
         addToFavsListener();
     });
@@ -24,20 +27,25 @@ export default function (state) {
             // Отображение панельного фильтра
             view.showPanelFilter(e.target);
             // Записываем значение input radio в state
-            state.filter.filterView = e.target.value;
+            state.renderType = e.target.value;
+            // Запись в LS
+            localStorage.setItem('Render Type', JSON.stringify(state.renderType))
             // Очистка контейнера с карточками
             view.clearListingContainer();
             if (e.target.value === "cards") {
                 // Обход массива с результатами, рендер карточек
+                state.renderType = "cards";
                 state.results.forEach((item) => {
                     view.renderCard(item, state.favourites.isFav(item.id));
                 });
             } else {
+                state.renderType = "list";
                 // Обход массива с результатами, рендер карточек
                 state.results.forEach((item) => {
                     view.renderPanel(item, state.favourites.isFav(item.id));
                 });
             }
+
             // Обработка клика по иконке с сердечком
             addToFavsListener();
         }
@@ -55,7 +63,7 @@ export default function (state) {
                     // Очистка котейнера с карточками
                     view.clearListingContainer();
                     // Выбор в каком виде будут рендериться карточки
-                    chooseRenderType(state.results, state.filter.filterView);
+                    chooseRenderType(state.results, state.renderType );
                     // Запускаем прослушку клика на иконки "Добавить в избранное"
                     addToFavsListener();
                 });
@@ -76,7 +84,7 @@ export default function (state) {
             const sortStatus = e.target.dataset.status; // ASC / DSC
             panelFilterSort(sortName, sortStatus);
             view.clearListingContainer();
-            chooseRenderType(state.results, state.filter.filterView);
+            chooseRenderType(state.results, state.renderType);
         }
     });
 
@@ -144,6 +152,11 @@ export default function (state) {
 
     // Ф-я которая определяет в каком виде должны рендерится элементы
     function chooseRenderType(arr, filterType) {
+        // Получения обьекта из LS
+        const savedFilterRenderType = JSON.parse(localStorage.getItem("Render Type"));
+        // Если этот обьект сущевствует
+        savedFilterRenderType !== null ? filterType = savedFilterRenderType : filterType = "cards";
+
         if (filterType === "cards" || !filterType) {
             arr.forEach((item) => {
                 view.renderCard(item, state.favourites.isFav(item.id));
@@ -153,5 +166,9 @@ export default function (state) {
                 view.renderPanel(item, state.favourites.isFav(item.id));
             });
         }
+
+        document.querySelector(`input[value=${filterType}]`).checked = true;
+
     }
+
 }

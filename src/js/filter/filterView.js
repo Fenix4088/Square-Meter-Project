@@ -1,6 +1,5 @@
 //! Полифил для использования обьекта URLSearchParams
 import "url-search-params-polyfill";
-import { filterData, saveValues } from "./filterModel.js";
 
 // Элементы для работы
 const elements = {
@@ -258,18 +257,18 @@ export function changeBtnText(number) {
 }
 
 // Ф-я которая получает данные из формы
-export function getInput() {
+export function getInput(state) {
     const searchParams = new URLSearchParams();
     // 1. Значение с select(название комплексов)
 
     if (elements.filterSelect[0].value !== "all") {
         searchParams.append(elements.filterSelect[0].name, elements.filterSelect[0].value);
         // Созранение значения в обьект фильтра filtrData
-        filterData.complex = elements.filterSelect[0].value;
+        state.filterData.complex = elements.filterSelect[0].value;
     }
 
     if (elements.filterSelect[0].value === "all") {
-        filterData.complex = "all";
+        state.filterData.complex = "all";
     }
     // 2. Параметры комнат - чекбоксы
     const roomsValues = [];
@@ -277,7 +276,7 @@ export function getInput() {
         if (checkbox.value !== "" && checkbox.checked) {
             roomsValues.push(checkbox.value);
             // Созранение значения в обьект фильтра filtrData
-            filterData.rooms = roomsValues;
+            state.filterData.rooms = roomsValues;
         }
     });
 
@@ -292,11 +291,11 @@ export function getInput() {
         if (input.value !== "") {
             searchParams.append(input.name, input.value);
             // Созранение значения в обьект фильтра filtrData
-            filterData[input.name] = input.value;
+            state.filterData[input.name] = input.value;
         }
     });
     // Сохраняем обьект фильтра в LS
-    localStorage.setItem("Filter Data", JSON.stringify(filterData));
+    localStorage.setItem("Filter Data", JSON.stringify(state.filterData));
 
     // Формируем строку запроса
     const queryString = searchParams.toString();
