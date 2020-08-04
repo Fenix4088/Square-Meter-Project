@@ -13,6 +13,7 @@ const state = {
     favourites: new Favourites(),
     objectsView: "",
     panelFilterType: "",
+    renderType: JSON.parse(localStorage.getItem("Render Type")) || "",
     filterData : {
         complex: "",
         rooms: [],

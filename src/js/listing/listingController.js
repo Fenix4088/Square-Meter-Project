@@ -153,7 +153,7 @@ export default function (state) {
     // Ф-я которая определяет в каком виде должны рендерится элементы
     function chooseRenderType(arr, filterType) {
         // Получения обьекта из LS
-        const savedFilterRenderType = JSON.parse(localStorage.getItem("Render Type"));
+        const savedFilterRenderType = state.renderType;
         // Если этот обьект сущевствует
         savedFilterRenderType !== null ? filterType = savedFilterRenderType : filterType = "cards";
 
@@ -162,6 +162,7 @@ export default function (state) {
                 view.renderCard(item, state.favourites.isFav(item.id));
             });
         } else {
+            document.querySelector(".panels-filter").style.display = "flex";
             arr.forEach((item) => {
                 view.renderPanel(item, state.favourites.isFav(item.id));
             });

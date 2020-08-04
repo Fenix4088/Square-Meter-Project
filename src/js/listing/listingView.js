@@ -78,7 +78,7 @@ export function renderCard(object, isFaved) {
 
 // Отображение панельного фильтра
 export function showPanelFilter (target) {
-    const panelFilter = document.querySelector(".panels-filter")
+    const panelFilter = document.querySelector(".panels-filter");
     if (target.value === "list" && target.checked) {
         panelFilter.style.display = "flex";
     } else {

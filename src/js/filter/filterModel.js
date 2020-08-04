@@ -30,11 +30,3 @@ export function saveValues(name, value) {
     name = value;
 }
 
-//  function getFormData() {
-//     const savedFilterData = JSON.parse(localStorage.getItem("Filter Data"));
-//     return savedFilterData;
-// }
-
-// export function setInputsValues () {
-//     const savedValues = getFormData();
-// }
