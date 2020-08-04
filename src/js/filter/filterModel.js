@@ -2,7 +2,7 @@ export default class Filter {
     constructor() {
         this.query = "";
     }
-    // Метод который отправляет запрос на сервер и получат от него значения
+    // A method that sends a request to the server and receives values ​​from it
     async getParams() {
         try {
             const queryString = "http://jsproject.webcademy.ru/itemsinfo";

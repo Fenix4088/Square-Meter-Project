@@ -3,19 +3,18 @@ import listing from "./../listing/listingController.js";
 import renderPreloader from "../preloader/preloader.js";
 
 export default async function (state) {
-    // renderPreloader();
 
     if (state.results.length === 0) {
-        // Отображаем прелоудер если ответ с сервера не получен
+        // Displaying the preloader if no response has been received from the server
         renderPreloader();
     }
 
     setTimeout(async function () {
         document.querySelector("#app").innerHTML = "";
 
-        // Запуск формы фильтра
+        // Running a filter form
         await filter(state);
-        // Запуск листенга(listingController)
+        // Startup listega (listingController)
         listing(state);
 
     }, 3000);

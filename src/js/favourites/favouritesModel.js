@@ -4,33 +4,33 @@ export default class Favourites {
         // работа с LS
         this.readStorage();
     }
-    // Метод для добавления id текущего элемента в массив state
+    // Method for adding the id of the current element to the state array
     addFav(id) {
         this.favs.push(id);
         this.saveData();
     }
-    // Метод для удаления из избранного
+    // Method for removing from favorites
     removeFav(id) {
         const index = this.favs.indexOf(id);
         this.favs.splice(index, 1);
         this.saveData();
     }
 
-    // Ф-я для проверки наличия элемента в массиве с избранным
+    // Method for checking if an element is in an array with favorites
     isFav(id) {
         return this.favs.indexOf(id) !== -1 ? true : false;
     }
-    // Метод который включает либо добавление либо удаление
+    // A method that involves either adding or removing
     toggleFav(id) {
         this.isFav(id) ? this.removeFav(id) : this.addFav(id);
     }
 
-    // Метод для работы с LS
+    // Method for working with LS
     saveData() {
         localStorage.setItem("favs", JSON.stringify(this.favs));
     }
 
-    // Метод для инициализации LS при первой загрузке
+    // Method to initialize LS on first boot
     readStorage() {
         const storage = JSON.parse(localStorage.getItem("favs"));
         if (storage) this.favs = storage;

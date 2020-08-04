@@ -3,7 +3,7 @@ export default class FavouritesCards {
         this.favsList = favsList;
     }
 
-    // Метод по созданию строки запроса для избранного
+    // Method for creating query string for favorites
     async getFavs() {
         const ids = this.favsList.toString();
         if (ids !== '') {

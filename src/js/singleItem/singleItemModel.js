@@ -17,7 +17,7 @@ export default class SingleItem {
 
     async sendData(formData) {
         const queryString = `http://jsproject.webcademy.ru/bidnew`;
-        // Запрос для отправки информации о заявки на сервер
+        // Request for sending information about the application to the server
         const response = await fetch(queryString, {
             method: "POST",
             headers: {

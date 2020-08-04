@@ -2,56 +2,56 @@ import * as view from "./filterView.js";
 import Filter from "./filterModel.js";
 
 export default async function (state) {
-    // Создаем обьект на основе класса Filter, если он еще не сущевствует
+    // Create an object based on the Filter class, if it does not already exist
     if (!state.filter) state.filter = new Filter();
-    // Получаем параметры с сервера
+    // Get parameters from the server
     await state.filter.getParams();
-    // Отображаем форму фильтра при инициализации
+    // Displaying the filter form on initialization
     view.render(state.filter.params);
-    // Создаеться строка запроса при условии что в LS есть данные по фильтру
+    // A query string is created, provided that LS contains data on the filter
     if (view.setInputs()) {
-        // Записываем сформированную строку запроса в обьект state
+        // We write the generated query string to the state object
         state.filter.query = view.getInput(state);
     }
-    // Делаем запрос на сервер
+    // Making a request to the server
     await state.filter.getResults();
-    // Сохраняем полученные обьекты в общий state
+    // We save the received objects to the general state
     state.results = state.filter.result;
 
-    // Обновляем текст на кнопке
+    // Updating the text on the button
     view.changeBtnText(state.filter.result.length);
 
-    // Прослушка событий формы
+    // Listening for form events
     const form = document.querySelector("#filter-form");
-    // Изменение формы
+    // Shape change
     form.addEventListener("change", async function (e) {
         e.preventDefault();
-        // Записываем сформированную строку запроса в обьект state
+        // We write the generated query string to the state object
         state.filter.query = view.getInput(state);
-        // Запрос на сервер за результатом
+        // Request to the server for the result
         await state.filter.getResults();
-        // Сохраняем полученные обьекты в общий state
+        // We save the received objects to the general state
         state.results = state.filter.result;
-        // Обновляем текст на кнопке
+        // Updating the text on the button
         view.changeBtnText(state.filter.result.length);
     });
 
-    // Сброс формы
+    // Reset form
     form.addEventListener("reset", async function () {
         localStorage.removeItem('Filter Data');
         state.filter.query = "";
-        // Запрос на сервер за результатом
+        // Request to the server for the result
         await state.filter.getResults();
-        // Обновленные данные по фильтру записываем их в state.result
+        // The updated data on the filter is written to state.result
         state.results = state.filter.result;
-        // Обновляем текст на кнопке
+        // Updating the text on the button
         view.changeBtnText(state.filter.result.length);
     });
 
-    // Submit формы
+    // Submit forms
     form.addEventListener("submit", function (e) {
         e.preventDefault();
-        // при submit  создаем пользовательское событие
+        // on submit create custom event
         state.emitter.emit("event:render-listing", {});
     });
 }

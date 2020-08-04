@@ -1,7 +1,7 @@
 export default class Bids {
     constructor() {}
 
-    // Метод для запроса заявок и созранения их в обьект данного компонента
+    // Method for requesting applications and saving them into the object of this component
     async getBids() {
         try {
             const queryString = `http://jsproject.webcademy.ru/bids`;

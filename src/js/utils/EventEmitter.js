@@ -3,7 +3,7 @@ export default class EventEmitter {
         this.events = {};
     }
 
-    // * Принимает название и данные
+    // * Accepts title and data
     emit(eventName, data) {
         const event = this.events[eventName];
         if (event) {

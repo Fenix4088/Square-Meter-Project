@@ -1,4 +1,4 @@
-// Ф-я для отображения окна элемента
+// Func to display the item window
 export function render(object, isFaved) {
     console.log("render -> isFaved", isFaved);
     const appContainer = document.querySelector("#app");
@@ -101,7 +101,7 @@ export function render(object, isFaved) {
     </div>
     `;
 
-    // Разметка для модального окна
+    // The markup for the modal window
     const makrupModal = `
             <div class="modal-wrapper none">
             <div class="modal">
@@ -173,7 +173,7 @@ export function render(object, isFaved) {
         </div>
     `;
 
-    // Иконки успех и отказ
+    // Success and failure icons
     const markupIcons = `
     <img class="accept-icon none" src="./img/icons/checkIcon.svg" alt="">
     <img class="denial-icon none" src="./img/icons/denialIcon.svg" alt="">
@@ -184,17 +184,17 @@ export function render(object, isFaved) {
     appContainer.insertAdjacentHTML("afterbegin", markupIcons);
 }
 
-// Ф-я для отображения модального окна
+// Func for displaying a modal window
 export function showModal() {
     document.querySelector(".modal-wrapper").classList.remove("none");
 }
 
-// Скрытие модального окна
+// Hiding a modal window
 export function hideModal() {
     document.querySelector(".modal-wrapper").classList.add("none");
 }
 
-// Ф-я которая собирает данные из формы модального окна
+// Func that collects data from the form of a modal window
 export function getInput() {
     const formData = {};
     formData.name = document.querySelector("#form-name").value;
@@ -202,12 +202,12 @@ export function getInput() {
     return formData;
 }
 
-// Ф-я очистки формы модального окна после отправки
+// Func clearing the modal window form after submitting
 export function clearInput() {
     document.querySelector("#form-name").value = "";
     document.querySelector("#form-phone").value = "";
 }
-// Ф-я для отображения иконок после отправки формы
+// Func to display icons after submitting the form
 export function showIcon(status) {
     if (status) {
         document.querySelector(".accept-icon").classList.remove("none");
@@ -221,9 +221,9 @@ export function showIcon(status) {
         }, 1000);
     }
 }
-// Ф-я отображения сообщений об ошибке на Input-ах
+// Func of displaying error messages on Input-s
 export function showWarning(formData, responseStatus) {
-    // Находим div для сообщения о проверке
+    // Finding the div for the validation message
     const warningName = document.querySelector(".warning-name");
     const warningPhone = document.querySelector(".warning-phone");
 
@@ -245,7 +245,7 @@ export function showWarning(formData, responseStatus) {
     }
 }
 
-// Ф-я для интерактивной смены класса у кнопки Избранное
+// Func for interactive class change at the Favorites button
 export function toggleFavouriteBtn(isFaved) {
     const btn = document.querySelector("#addToFavouriteBtn");
     if (isFaved) {

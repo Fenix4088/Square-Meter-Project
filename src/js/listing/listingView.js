@@ -1,4 +1,4 @@
-// Ф-я для рендеринга контейнера для карточек
+// Function for rendering a container for cards
 export function render() {
     const markup = `
       
@@ -14,7 +14,7 @@ export function render() {
     document.querySelector("#app").insertAdjacentHTML("beforeend", markup);
 }
 
-// Ф-я рендеринга карточки(плитка)
+// Function render card (tile)
 export function renderCard(object, isFaved) {
     const listingContainer = document.querySelector("#listingContainer");
     const markup = `
@@ -76,7 +76,7 @@ export function renderCard(object, isFaved) {
     listingContainer.insertAdjacentHTML("beforeend", markup);
 }
 
-// Отображение панельного фильтра
+// Panel filter display
 export function showPanelFilter (target) {
     const panelFilter = document.querySelector(".panels-filter");
     if (target.value === "list" && target.checked) {
@@ -85,7 +85,7 @@ export function showPanelFilter (target) {
         panelFilter.style.display = "none";
     }
 }
-// Ф-я рендеринга обьектов в виде полосок
+// Function of rendering objects in the form of stripes
 export function renderPanel(object, isFaved) {
     const listingContainer = document.querySelector("#listingContainer");
     const markup = `
@@ -114,13 +114,13 @@ export function renderPanel(object, isFaved) {
     listingContainer.insertAdjacentHTML("beforeend", markup);
 }
 
-// Ф-я очистки разметки
+// Function cleaning the markup
 export function clearListingContainer() {
     const listingContainer = document.querySelector("#listingContainer");
     listingContainer.innerHTML = "";
 }
 
-// Ф-я для активизации иконки с сердечком
+// Function to activate the icon with a heart
 export function toggleFavouriteIcon(elementIcon, isFaved) {
     if (isFaved) {
         elementIcon.classList.add("card__like--active");

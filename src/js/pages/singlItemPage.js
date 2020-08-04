@@ -1,10 +1,10 @@
 import singleItem from "../singleItem/singleItemController.js"
 
 export default function (state) {
-    // Очищаем контейнер приложения
+    // Clearing the application container
     document.querySelector("#app").innerHTML = '';
 
-    // Запускаем компонент singleItem
+    // Launching the singleItem component
     singleItem(state);
 
 }

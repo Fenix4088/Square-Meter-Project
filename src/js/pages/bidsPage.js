@@ -3,13 +3,13 @@ import renderPreloader from "../preloader/preloader.js";
 
 export default function (state) {
     if (typeof state["bids"] === "undefined") {
-        // Отображаем прелоудер если ответ с сервера не получен
+        // Displaying the preloader if no response has been received from the server
         renderPreloader();
     }
     setTimeout(function () {
-        // Очищаем контейнер app
+        // Emptying the app container
         document.querySelector("#app").innerHTML = "";
-        // Запускаем компонент bids
+        // Launching the bids component
         bids(state);
     }, 3000);
 }

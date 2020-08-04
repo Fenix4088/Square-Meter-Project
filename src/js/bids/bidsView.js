@@ -1,4 +1,4 @@
-// Ф-я рендеринга контейнера
+// Function rendering the container
 function renderContainer () {
     const markup = `
             <div id="bidsHolder" class="container p-0 mb-5">
@@ -16,7 +16,7 @@ function renderContainer () {
     document.querySelector('#app').insertAdjacentHTML("afterbegin", markup);
 }
 
-// Ф-я для рендеринга заявок
+// Function for rendering applications
 function renderBid (bid) {
     const markup = `
     <div class="panel panel--no-hover">
@@ -30,7 +30,7 @@ function renderBid (bid) {
     document.querySelector('#bidsHolder').insertAdjacentHTML('beforeend', markup);
 }
 
-// Ф-я которая рендерит сначало контейнер, а потом будет рендерить все заявки
+// Function which first renders the container, and then will render all applications
 export function renderBids (bids) {
     renderContainer();
     bids.forEach( item => {

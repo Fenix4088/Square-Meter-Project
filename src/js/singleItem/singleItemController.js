@@ -2,29 +2,29 @@ import SingleItem from "./singleItemModel.js";
 import * as view from "./singleItemView.js";
 
 export default async function (state) {
-    // Создаем и записываем класс SingleItem в state приложения
+    // Create and write the SingleItem class in the application state
     state.singleItem = new SingleItem(state.routeParams);
     await state.singleItem.getItem();
-    // Рендерим разметку для отдельного обьекта
+    // Rendering markup for a separate object
     view.render(state.singleItem.result, state.favourites.isFav(state.singleItem.id));
 
-    // *Прослушка событий
+    // * Wiretapping of events
     const orderBtn = document.querySelector(".button-order");
     const modalCloseBtn = document.querySelector(".modal__close");
     const modalWrapper = document.querySelector(".modal__form");
     const favouriteBtn = document.querySelector("#addToFavouriteBtn");
 
-    // Открытие модального окна
+    // Opening a modal window
     orderBtn.addEventListener("click", () => {
         view.showModal();
     });
 
-    // Скрытие модального окна - клик по кнопке
+    // Hiding a modal window - clicking on the button
     modalCloseBtn.addEventListener("click", () => {
         view.hideModal();
     });
 
-    // Скрытие модального окна - клик оверлею
+    // Hide modal window - click overlay
     modalWrapper.addEventListener("click", (e) => {
         if (e.target.closest(".modal")) {
             return null;
@@ -33,20 +33,20 @@ export default async function (state) {
         }
     });
 
-    // Отправка формы
+    // Form submission
     modalWrapper.addEventListener("submit", async function (e) {
         e.preventDefault();
-        // Сбор данных из формы модального окна
+        // Collecting data from a modal window form
         const formData = view.getInput();
-        // Отправка данных на сервер
+        // Sending data to the server
         /*
         await state.singleItem.sendData(formData);
         const response = state.singleItem.response;
         */
         const response = await state.singleItem.sendData(formData);
-        // Переменная для статуса отправки формы
+        // Variable for the form submission status
         let responseStatus;
-        // Проверка на то какой ответ пришел из сервера, создана ли заявка или нет
+        // Checking which response came from the server, whether the request was created or not
         if (response.message === "Bid Created") {
             responseStatus = true;
             view.hideModal();
@@ -56,15 +56,15 @@ export default async function (state) {
             responseStatus = false;
             view.showWarning(formData, responseStatus);
         }
-        // Отобрадение иконки статуса заявки
+        // Displaying the application status icon
         view.showIcon(responseStatus);
     });
 
-    // Клик по кнопке добавить в избранное
+    // Click on the add to favorites button
     favouriteBtn.addEventListener("click", () => {
-        // Добавляем id текущего обьекта в массив в state
+        // Add the id of the current object to the array in state
         state.favourites.toggleFav(state.singleItem.id);
-        // Добавоение активного класса для кнопки
+        // Adding an active class for a button
         view.toggleFavouriteBtn(state.favourites.isFav(state.singleItem.id))
     });
 }

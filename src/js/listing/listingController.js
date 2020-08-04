@@ -1,36 +1,33 @@
 import * as view from "./listingView.js";
 
 export default function (state) {
-    // Рендериг контейнера для карточек при старте
+    // Rendering a container for cards at startup
     view.render();
-    // if(savedFilterRenderType != null) {
-    //     state.renderType = savedFilterRenderType;
-    // }
-    // Выбор в каком виде будут рендериться карточки
+    // Choice of how the cards will be rendered
     chooseRenderType(state.results, state.renderType);
-    // Запускаем прослушку клика на иконки "Добавить в избранное"
+    // We start listening to a click on the "Add to favorites" icon
     addToFavsListener();
 
-    // Подписка на пользовательское событие
+    // Subscribing to a custom event
     state.emitter.subscribe("event:render-listing", () => {
-        // Очистка контейнера с карточками
+        // Cleaning the card container
         view.clearListingContainer();
-        // Выбор в каком виде будут рендериться карточки
+        // Choice of how the cards will be rendered
         chooseRenderType(state.results, state.renderType);
-        // Запускаем прослушку клика на иконки "Добавить в избранное"
+        // We start listening to a click on the "Add to favorites" icon
         addToFavsListener();
     });
 
-    // Событие Клик по иконкам отображения обьектов(radio btns)
+    // Event Click on objects display icons (radio btns)
     document.querySelector(".view-options__type").addEventListener("click", (e) => {
         if (e.target.getAttribute("name") === "displayType") {
-            // Отображение панельного фильтра
+            // Panel filter display
             view.showPanelFilter(e.target);
-            // Записываем значение input radio в state
+            // Write the value of input radio to state
             state.renderType = e.target.value;
-            // Запись в LS
-            localStorage.setItem('Render Type', JSON.stringify(state.renderType))
-            // Очистка контейнера с карточками
+            // Writing to LS
+            localStorage.setItem("Render Type", JSON.stringify(state.renderType));
+            // Cleaning the card container
             view.clearListingContainer();
             if (e.target.value === "cards") {
                 // Обход массива с результатами, рендер карточек
@@ -40,41 +37,41 @@ export default function (state) {
                 });
             } else {
                 state.renderType = "list";
-                // Обход массива с результатами, рендер карточек
+                // Bypassing the array with results, rendering cards
                 state.results.forEach((item) => {
                     view.renderPanel(item, state.favourites.isFav(item.id));
                 });
             }
 
-            // Обработка клика по иконке с сердечком
+            // Handling a click on a heart icon
             addToFavsListener();
         }
     });
 
-    // Клик по option для сортировки по ценам и площади
+    // Click on option to sort by price and area
     document.querySelector("#sort-cards-by").addEventListener("change", (e) => {
         console.log(e.target.children);
         Array.from(e.target.children).forEach((option) => {
             if (option.selected) {
-                // Сортировка массива в зависимости от выбранного option
+                // Sort the array based on the selected option
                 const sortedArr = sortElements(option.value, state.results);
 
                 sortedArr.forEach((item) => {
-                    // Очистка котейнера с карточками
+                    // Cleaning the catainer with cards
                     view.clearListingContainer();
-                    // Выбор в каком виде будут рендериться карточки
-                    chooseRenderType(state.results, state.renderType );
-                    // Запускаем прослушку клика на иконки "Добавить в избранное"
+                    // Choice of how the cards will be rendered
+                    chooseRenderType(state.results, state.renderType);
+                    // We start listening to a click on the "Add to favorites" icon
                     addToFavsListener();
                 });
             }
         });
     });
 
-    // Клик по элементу панельного фильтра
+    //Click on a panel filter element
     document.querySelector(".panels-filter").addEventListener("click", (e) => {
         if (e.target.hasAttribute("data-filter")) {
-            // Определяем тип (возрастнание / убывание) и имя сортируемого обьекта
+            // Determine the type (ascending / descending) and the name of the sorted object
             if (e.target.dataset.status === "" || e.target.dataset.status === "ASC") {
                 e.target.dataset.status = "DSC";
             } else {
@@ -88,74 +85,63 @@ export default function (state) {
         }
     });
 
-    // Ф-я сортировки элементов
+    // Element sorting function
     function sortElements(value, arr) {
-        // * Old version
-        // const sortType = value.split("-");
-        // arr.sort(function (a, b) {
-        //     return a[sortType[0]] - b[sortType[0]];
-        // });
-
-        // if (sortType[1] === "ASC") {
-        //     return arr;
-        // } else {
-        //     return arr.reverse();
-        // }
         // *modern version
         const [type, dir] = value.split("-");
         return arr.sort((a, b) => (dir === "ASC" ? a[type] - b[type] : b[type] - a[type]));
     }
 
-    // Сортировка для панельного фильтра
-    function panelFilterSort (name, status) {
+    // Sorting for panel filter
+    function panelFilterSort(name, status) {
         if (name === "complex_name") {
-            state.results.sort( (a, b) => {
+            state.results.sort((a, b) => {
                 if (a[name] > b[name]) {
                     return -1;
                 }
-                if(a[name] < b[name]) {
+                if (a[name] < b[name]) {
                     return 1;
                 }
-                return 0
+                return 0;
             });
         } else if (status === "ASC" && name !== "complex_name") {
-            state.results.sort( (a, b) => {
-                return a[name] - b[name]
-            })
+            state.results.sort((a, b) => {
+                return a[name] - b[name];
+            });
         } else if (status === "DSC" && name !== "complex_name") {
-            state.results.sort( (a, b) => {
-                return b[name] - a[name]
-            })
+            state.results.sort((a, b) => {
+                return b[name] - a[name];
+            });
         }
     }
 
-    // Ф-я для работы иконок "Добавить в избранное"
+    // Func for working icons "Add to favorites"
     function addToFavsListener() {
         Array.from(document.getElementsByClassName("card__like")).forEach((item) => {
             item.addEventListener("click", (e) => {
                 e.preventDefault();
-                // Находим ID обьекта по которому кликнули
+                // Find the ID of the object that was clicked
                 let currentId;
                 if (e.target.closest(".card")) {
                     currentId = e.target.closest(".card").dataset.id;
                 } else if (e.target.closest(".panel")) {
                     currentId = e.target.closest(".panel").dataset.id;
                 }
-                // Добавляем/убираем элемент из избранного
+                // Add / remove item from favorites
                 state.favourites.toggleFav(currentId);
 
-                // Включаем/выключаем иконку с избранным
+                // Turn on / off the icon with favorites
                 view.toggleFavouriteIcon(e.target.closest(".card__like"), state.favourites.isFav(currentId));
             });
         });
     }
 
-    // Ф-я которая определяет в каком виде должны рендерится элементы
+    // Func which determines in what form the elements should be rendered
     function chooseRenderType(arr, filterType) {
-        // Получения обьекта из LS
+        // Getting an object from LS
         const savedFilterRenderType = state.renderType;
-        // Если этот обьект сущевствует
-        savedFilterRenderType !== null ? filterType = savedFilterRenderType : filterType = "cards";
+        // If this object exists
+        savedFilterRenderType !== null ? (filterType = savedFilterRenderType) : (filterType = "cards");
 
         if (filterType === "cards" || !filterType) {
             arr.forEach((item) => {
@@ -169,7 +155,5 @@ export default function (state) {
         }
 
         document.querySelector(`input[value=${filterType}]`).checked = true;
-
     }
-
 }

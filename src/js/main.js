@@ -6,7 +6,7 @@ import errorPage from "./pages/errorPage.js";
 import EventEmitter from "./utils/EventEmitter.js";
 import Favourites from "./favourites/favouritesModel.js";
 
-// * Обьект состояния приложения
+// * Application state object
 const state = {
     results: [],
     emitter: new EventEmitter(),
@@ -25,7 +25,7 @@ const state = {
 };
 window.state = state;
 // * Router
-// Массив с маршрутами
+// Array with routes
 const routes = [
     { path: "/", component: homePage },
     { path: "item", component: singlItem },
@@ -33,29 +33,29 @@ const routes = [
     { path: "bids", component: bidsPage },
 ];
 
-// Ф-я которая принемает в себя маршрут и выдает название компонента который нужный запустить
+// Function that takes the route and gives the name of the component that you want to run
 function findComponentByPath(path, routes) {
     return routes.find(function (route) {
         return route.path === path;
     });
 }
 
-// Ф-я для работы роутера
+// F-I for router operation
 function router() {
-    // Обращаемся к адресу в адрессной строке
+    // Referring to the address in the address line
     const pathArray = location.hash.split("/");
-    // Устанавлеваем текущий маршрутx
+    // Set the current routes
     let currentPath = pathArray[0] === "" ? "/" : pathArray[1];
     currentPath = currentPath === "" ? "/" : currentPath;
 
-    // Возможный параметр для компонента, например id карточки по которой кликнули
+    // Possible parameter for the component, for example, the id of the card that was clicked
     state.routeParams = pathArray[2] ? pathArray[2] : "";
 
     const { component = errorPage } = findComponentByPath(currentPath, routes) || {};
-    // Вызов компонента роутера, то есть страници
+    // Calling a router component, that is, a page
     component(state);
 }
-// ! Решение через обьект
+// ! Object solution
 /*
 const routes = {
     "/": homePage,
@@ -69,8 +69,8 @@ function findComponentByPath(path, routes) {
 currentPath = pathArray[0] && pathArray[1] ? pathArray[1] : '/';
 */
 
-// Запускаем роутер в случае изменения hash (то есть перехода по ссылке)
+// We start the router in case of hash change (that is, following the link)
 window.addEventListener("hashchange", router);
 
-// Запускаем роутер в случае загрузки страници
+// We launch the router if the page is loaded
 window.addEventListener("load", router);

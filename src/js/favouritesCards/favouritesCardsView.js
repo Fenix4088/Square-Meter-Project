@@ -76,7 +76,7 @@ export function renderPage(cards) {
     });
 }
 
-// Ф-я для активизации иконки с сердечком
+// Function to activate the icon with a heart
 export function toggleFavouriteIcon(elementIcon, isFaved) {
     if (isFaved) {
         elementIcon.classList.add("card__like--active");
@@ -85,7 +85,7 @@ export function toggleFavouriteIcon(elementIcon, isFaved) {
     }
 }
 
-// Ф-я отображения о отсутсвии избранного
+// Function display about lack of favorites
 export function showNoFavouritesMessage() {
     const markup = `                
     <div class="container">
