@@ -45,13 +45,13 @@ function renderCard(object) {
                 <div class="card__params params">
                     <div class="params__item">
                         <div class="params__definition">
-                            Комнат
+                            Rooms
                         </div>
                         <div class="params__value">${object.rooms}</div>
                     </div>
                     <div class="params__item">
                         <div class="params__definition">
-                            Площадь
+                            Space
                         </div>
                         <div class="params__value">${object.square}</div>
                     </div>
@@ -60,7 +60,7 @@ function renderCard(object) {
             </div>
             <div class="card__footer">
                 <div class="card__art">${object.scu}</div>
-                <div class="card__floor">Этаж ${object.floor} из ${object.floors_total}</div>
+                <div class="card__floor">Floor ${object.floor} of ${object.floors_total}</div>
             </div>
         </a>
         <!-- // card -->

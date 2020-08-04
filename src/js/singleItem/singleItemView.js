@@ -6,7 +6,7 @@ export function render(object, isFaved) {
     const markup = `
         <div class="container p-0 pt-5">
         <div class="heading-1">
-            ${object.title}, ${object.square} м2 за ${object.price_total} ₽
+            ${object.title}, ${object.square} м2 for ${object.price_total} ₽
         </div>
 
         <!-- object -->
@@ -39,7 +39,7 @@ export function render(object, isFaved) {
                     ">
                         <i class="fas fa-heart"></i> 
                         <span>
-                        ${isFaved ? "В избранном" : "В избранное"}
+                        ${isFaved ? "Favorite" : "Add to favorites"}
                         </span>
                     </button>
 
@@ -49,19 +49,19 @@ export function render(object, isFaved) {
                     <!-- params -->
                     <div class="params">
                         <div class="params__item">
-                            <div class="params__definition">Корпус</div>
+                            <div class="params__definition">Building</div>
                             <div class="params__value">${object.building}</div>
                         </div>
                         <div class="params__item">
-                            <div class="params__definition">Этаж</div>
+                            <div class="params__definition">Floor</div>
                             <div class="params__value">${object.floor}</div>
                         </div>
                         <div class="params__item">
-                            <div class="params__definition">Номер</div>
+                            <div class="params__definition">Apartment</div>
                             <div class="params__value">${object.flat_number}</div>
                         </div>
                         <div class="params__item">
-                            <div class="params__definition">Комнат</div>
+                            <div class="params__definition">Rooms</div>
                             <div class="params__value">${object.rooms}</div>
                         </div>
                     </div>
@@ -70,7 +70,7 @@ export function render(object, isFaved) {
 
                 <div class="details">
                     <div class="details__row">
-                        <div class="details__name">Стоимость</div>
+                        <div class="details__name">Price</div>
                         <div
                             class="details__value details__value--price"
                         >
@@ -78,16 +78,16 @@ export function render(object, isFaved) {
                         </div>
                     </div>
                     <div class="details__row">
-                        <div class="details__name">Цена за м2</div>
+                        <div class="details__name">Price for м2</div>
                         <div class="details__value">${object.price_sq_m} ₽/м2</div>
                     </div>
                     <div class="details__row">
-                        <div class="details__name">Площадь</div>
+                        <div class="details__name">Space</div>
                         <div class="details__value">${object.square} м2</div>
                     </div>
                 </div>
 
-                <button class="button-order">Забронировать</button>
+                <button class="button-order">Book now</button>
                 <!-- <button class="button-preview">Записаться на просмотр</button> -->
             </div>
             <!-- // object__desc -->
@@ -96,7 +96,7 @@ export function render(object, isFaved) {
     </div>
     <div class="container p-0">
         <a href="index.html" class="back-to-results"
-        >← Вернуться к результатам поиска</a
+        >← Back to search results</a
         >
     </div>
     `;
@@ -107,10 +107,10 @@ export function render(object, isFaved) {
             <div class="modal">
                 <div class="modal__header">
                     <div class="modal__title">
-                        Заявка на бронирование
+                        Booking request
                     </div>
                     <div class="modal__details">
-                    ${object.title}<span> номер ${object.flat_number}</span> Номер дома: ${object.building}
+                    ${object.title}<span> apartament number ${object.flat_number}</span> Building number: ${object.building}
                         <div class="modal__details-art">${object.scu}</div>
                     </div>
                 </div>
@@ -123,7 +123,7 @@ export function render(object, isFaved) {
                                 class="modal__form-input-label"
                                 for="form-phone"
                             >
-                                Имя<span class="warning-name warning ml-10"></span>
+                                Name<span class="warning-name warning ml-10"></span>
                             </label>
                             <input
                                 type="text"
@@ -139,7 +139,7 @@ export function render(object, isFaved) {
                                 class="modal__form-input-label"
                                 for="form-phone"
                             >
-                                Телефон<span class="warning-phone warning ml-10"></span>
+                                Phone number<span class="warning-phone warning ml-10"></span>
                             </label>
                             <input
                                 type="text"
@@ -153,17 +153,17 @@ export function render(object, isFaved) {
                         <div class="formgroup formgroup--checkbox">
                             <input type="checkbox" id="policy" checked />
                             <label class="policy-text" for="policy"
-                                >Я согласен на обработку моих персональных
-                                данных. С Политикой в отношении обработки
-                                персональных данных ознакомлен и
-                                согласен.</label
+                                >I agree to the processing of my personal
+                                data. With Processing Policy
+                                personal data is familiarized and
+                                I agree.</label
                             >
                         </div>
                     </div>
                     <input
                         class="modal__submit"
                         type="submit"
-                        value="Отправить заявку"
+                        value="Send request"
                     />
                 </form>
                 <button class="modal__close">
@@ -232,13 +232,13 @@ export function showWarning(formData, responseStatus) {
         warningPhone.innerText = "";
     } else {
         if (formData.name.trim() === "") {
-            warningName.innerText = "Поле Имя обязательно для заполнения!";
+            warningName.innerText = "The Name field is required!";
         } else {
             warningName.innerText = "";
         }
 
         if (formData.phone.trim() === "") {
-            warningPhone.innerText = "Поле Телефон обязательно для заполнения!";
+            warningPhone.innerText = "The Phone number field is required!";
         } else {
             warningPhone.innerText = "";
         }
@@ -250,9 +250,9 @@ export function toggleFavouriteBtn(isFaved) {
     const btn = document.querySelector("#addToFavouriteBtn");
     if (isFaved) {
         btn.classList.add("button-favourite--active");
-        btn.querySelector("span").textContent = "В избранном";
+        btn.querySelector("span").textContent = "Favorite";
     } else {
         btn.classList.remove("button-favourite--active");
-        btn.querySelector("span").textContent = "В избранное";
+        btn.querySelector("span").textContent = "Add to favorites";
     }
 }

@@ -31,26 +31,26 @@ export function render(params) {
     });
 
     const markup = `<form id="filter-form" method="GET" class="container p-0">
-    <div class="heading-1">Выбор квартир:</div>
+    <div class="heading-1">Apartments filter:</div>
     <div class="filter">
         <div class="filter__col">
-            <div class="filter__label">Выбор проекта:</div>
+            <div class="filter__label">Projects:</div>
             <select name="complex" id="select" class="filter__dropdown">
-                <option value="all" data-complex>Все проекты</option>
+                <option value="all" data-complex>All projects</option>
                 ${complexNames}
             </select>
         </div>
         <div class="filter__col rooms">
-            <div class="filter__label">Комнат:</div>
+            <div class="filter__label">Rooms:</div>
             <div class="rooms__wrapper">
                 ${rooms}
             </div>
         </div>
         <div class="filter__col">
-            <div class="filter__label">Площадь:</div>
+            <div class="filter__label">Space:</div>
             <div class="range__wrapper">
                 <label class="range">
-                    <div for="" class="range__label">от</div>
+                    <div for="" class="range__label">fr</div>
                     <input
                         name="sqmin"
                         min="0"
@@ -62,7 +62,7 @@ export function render(params) {
                     <div class="range__value">м2</div>
                 </label>
                 <label class="range">
-                    <div for="" class="range__label">до</div>
+                    <div for="" class="range__label">to</div>
                     <input
                         name="sqmax"
                         min="0"
@@ -76,10 +76,10 @@ export function render(params) {
             </div>
         </div>
         <div class="filter__col">
-            <div class="filter__label">Стоимость:</div>
+            <div class="filter__label">Price:</div>
             <div class="range__wrapper">
                 <div class="range">
-                    <label for="" class="range__label">от</label>
+                    <label for="" class="range__label">fr</label>
                     <input
                         type="number"
                         name="pricemin"
@@ -91,7 +91,7 @@ export function render(params) {
                     <div class="range__value">₽</div>
                 </div>
                 <div class="range">
-                    <label for="" class="range__label">до</label>
+                    <label for="" class="range__label">to</label>
                     <input
                         type="number"
                         name="pricemax"
@@ -107,7 +107,7 @@ export function render(params) {
     </div>
     <div class="filter__buttons">
         <button class="filter__show">Показать объекты</button>
-        <button type="reset" class="filter__reset">Сбросить фильтр</button>
+        <button type="reset" class="filter__reset">Reset filter</button>
     </div>
 </form>
 <!-- Sort by -->
@@ -119,7 +119,7 @@ export function render(params) {
             <label
                 for="sort-cards-by"
                 class="view-options__label"
-                >Сортировать</label
+                >Sort</label
             >
             <select
                 id="sort-cards-by"
@@ -127,10 +127,10 @@ export function render(params) {
                 id=""
                 class="view-options__select"
             >
-                <option value="price_total-ASC">по цене ↑</option>
-                <option value="price_total-DESC">по цене ↓</option>
-                <option value="square-ASC">по площади ↑</option>
-                <option value="square-DESC">по площади ↓</option>
+                <option value="price_total-ASC">by price ↑</option>
+                <option value="price_total-DESC">by price ↓</option>
+                <option value="square-ASC">by space ↑</option>
+                <option value="square-DESC">by space ↓</option>
             </select>
         </div>
         <div class="view-options__type">
@@ -173,21 +173,21 @@ export function render(params) {
             style="width: 120px;"
         >
             <div class="panels-filter__name no-filter">
-                Артикул
+                Article
             </div>
         </div>
         <div
             class="panels-filter__element"
             style="width: 160px;"
         >
-            <div class="panels-filter__name" data-filter="complex_name" data-status>ЖК</div>
+            <div class="panels-filter__name" data-filter="complex_name" data-status>Projects</div>
         </div>
         <div
             class="panels-filter__element"
             style="width: 70px;"
         >
             <div class="panels-filter__name no-filter">
-                Корпус
+                Building
             </div>
         </div>
         <div
@@ -195,20 +195,20 @@ export function render(params) {
             style="width: 70px;"
         >
             <div class="panels-filter__name no-filter">
-                Этаж
+                Floor
             </div>
         </div>
         <div
             class="panels-filter__element"
             style="width: 70px;"
         >
-            <div class="panels-filter__name" data-filter="rooms" data-status>Комнат</div>
+            <div class="panels-filter__name" data-filter="rooms" data-status>Rooms</div>
         </div>
         <div
             class="panels-filter__element"
             style="width: 80px;"
         >
-            <div class="panels-filter__name" data-filter="square" data-status>Площадь</div>
+            <div class="panels-filter__name" data-filter="square" data-status>Space</div>
         </div>
         <div
             class="panels-filter__element"
@@ -220,7 +220,7 @@ export function render(params) {
             class="panels-filter__element"
             style="width: 100px;"
         >
-            <div class="panels-filter__name" data-filter="price_total" data-status>Стоимость</div>
+            <div class="panels-filter__name" data-filter="price_total" data-status>Price</div>
         </div>
 
         <div
@@ -228,7 +228,7 @@ export function render(params) {
             style="width: 100px;"
         >
             <div class="panels-filter__name no-filter">
-                Избранное
+                Favorites
             </div>
         </div>
     </div>
@@ -247,10 +247,10 @@ export function changeBtnText(number) {
     let message;
     const btn = elements.filterSubmit[0];
     if (number > 0) {
-        message = `Показать ${number} обьектов`;
+        message = `Show ${number} objects`;
         btn.disabled = false;
     } else {
-        message = `Обьекты не найдены. Измените условие поиска`;
+        message = `No objects found. Change your search term`;
         btn.disabled = true;
     }
     btn.innerText = message;
