@@ -1,6 +1,6 @@
 # Square Meter Project
 
-## Технологии
+## Technology
 - HTML5
 - CSS3
 - JavaScript ES6+
@@ -8,22 +8,22 @@
 - WebPack
 - Babel
 
-## Описание
-Square Meter Project - это SPA для интернет магазина недвижимости.:house:    
+## Description
+Square Meter Project is a SPA for an online real estate agency.:house:    
 
-Все изменения происходят в приделах одной страници.
-
-
-В SPA представленно всего 18 различных квартир из пяти разных строительных компаний.  
-При старте страници подгружаеться фильтр и отображаються все имеющиеся на сервере квартиры.
+All changes take place on one page.
 
 
-Square Meter Project состоит из главного фильтра, поля отображения обьектов, фильтра по возрастанию:small_red_triangle: и убыванию:small_red_triangle_down: по цене и по площади. Присутствуют два возможных типа отображения обьектов.  
-Кликнув по ссылке "Избранное" в шапке страници отображаются все обьекты которые были добавлены в избранное.  
-Ссылка "Заявки" загружает все заявки которые поступили на сервер и отображает их.
+The SPA has a total of 18 different apartments from five different construction companies.  
+At the start of the page, the filter is loaded and all apartments available on the server are displayed.
+
+
+Square Meter Project consists of a main filter, object display fields, a ascending:small_red_triangle: /descending :small_red_triangle_down: filter by the real eatate price and area. There are two possible types of displaying objects.    
+By clicking on the link "Favorites" in the header of the page, all objects that have been added to the favorites are displayed.  
+The link "Orders" downloads all orders that have arrived on the server and displays them.
 Кликнув по карточке квартиры пользователь сможет подробно ознакомиться с характиристиками данного продукта а так же подать заявку на его покупку.
 
-###### :large_blue_diamond: Фильтры
+###### :large_blue_diamond: Filters
 Главный фильтр который мы видим при загрузки страници дает возможность пользователю более подробно формулировать свой запрос.  
 Пользователь получает возможность фильтровать обьекты по:
   1. Названию строительной компании
@@ -41,7 +41,7 @@ Square Meter Project состоит из главного фильтра, пол
 Табличный фильтр дает возможность сортировать по определенным параметрам.  
 Все настройки фильтра сохраняються. Это значит что после перезагрузки станици пользователь увидит все свои предыдущие настройки фильтра, если он были. :sunglasses:
 
-###### :large_blue_diamond: Страница товара
+###### :large_blue_diamond: Item page
 Если кликнуть по карточке с товаром то отображаються подробные данные по этому товару:
   1. Название строительной компании
   2. Площадь
@@ -53,13 +53,13 @@ Square Meter Project состоит из главного фильтра, пол
 На странице товара пользователь может подать заявку на покупку квартиры нажав на кнопку "Book now". При клике отобразиться модальное окно которое дает возможность ввести сво имя и номер телефона :phone: для того что бы администрация могла связаться с заказчиком.  
 
 
-###### :large_blue_diamond: Избранное
+###### :large_blue_diamond: Favorites
 Перейдя по ссылке "Избранное" :sparkling_heart:, в шапке страници, пользователь может увидеть все товары которые он добавил в избраное отметив нужный товар сердечком.
 
-###### :large_blue_diamond: Заявки
+###### :large_blue_diamond: Orders
 Эта ссылка находиться в шапке страници и предназначена только для администрации:exclamation: Тут отображаються все заявки которые были получены путем заполнеия пользователями формы на Странице товара.  
 
-## Техническое описание
+## Technical description
 
 Для SPA приложения был написан роутер, благодаря которому, в зависимости от hash отображаеться определенный компонет приложения. 
 Проект собран с помощью Webpack сборки, применен babel polifil для создания полифилов для синтаксиса ES6+.
@@ -68,13 +68,13 @@ Square Meter Project состоит из главного фильтра, пол
 :file_folder: Папка template содержит разметку страниц.  
 Практически вся разметка подгружаеться с помощью JavaScript. 
 
-## :warning:Важно:warning:
+## :warning:Important:warning:
 В проект выполнин на английском языке, некоторые надписи вы можете встретить на русском это происходит из за того что был использован API русского сервера.    
 Проект работает во всех браузерах.  
 Не поддерживаеться RWD.  
 Нет возможности разместить работу на GitHubPages из за того что API проекта работает через HTTP протокол.:cold_sweat:
 
-## Ссылки
+## Links
 
-[Документация API проекта](http://jsproject.webcademy.ru/#items):point_left:  
-[Ссылка на сайт]():point_left:
+[API Documentation](http://jsproject.webcademy.ru/#items):point_left:  
+[Webcite Link]():point_left:
