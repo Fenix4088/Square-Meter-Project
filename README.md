@@ -70,10 +70,10 @@ The project is built with a the help of Webpack, babel polifil is applied to cre
 Almost all markup is loaded using JavaScript. 
 
 ## :warning:Important:warning:
-The project is executed in English, some of the inscriptions you can find in Russian, this is due to the fact that the API of the Russian server was used.    
+The project is executed in English, some of the inscriptions appear in Russian. This is due to the fact that the API of the Russian server was used.    
 The project is compatible with all types of browsers.  
 No RWD support.  
-There is no way to post work on GitHubPages due to the fact that the project's API works over the HTTP protocol.:cold_sweat:
+There is no way to post work on GitHubPages as the project's API works over the HTTP protocol.:cold_sweat:
 
 ## Links
 
