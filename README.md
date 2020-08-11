@@ -38,11 +38,11 @@ By the way, the button for data displaying will show the user how many objects w
 The filter, wich appears in the form of a drop-down menu below the display button, allows the user to sort out the displayed objects by price and area.    
 The filter in the form of two icons gives the user a choice of displaying objects either as cards or a table.   
 If the user chooses a table display, another filter will sort :thumbsup: the objects by certain features. The table uses an ascending and descending type of filter.    
-All filter settings are saved. It means that after restarting the page, the user will see all his previous filter settings, if any. :sunglasses:
+All filter settings are saved. It means that after restarting the page, the user will see all previous filter settings, if any. :sunglasses:
 
 ###### :large_blue_diamond: Item page
 If you click on the card with a product, detailed data for this product will be displayed:
-  1. Name of a cunstruction company
+  1. Name of a construction company
   2. Living space
   3. Number of rooms in an apartment
   4. Floor
@@ -55,7 +55,7 @@ On the product page, the user can apply for the purchase of an apartment by clic
 
 
 ###### :large_blue_diamond: Favorites
-The link  "Favorites" :sparkling_heart:, in the header of the page, the user can see all the products that he added to the favorites by marking the desired product with a heart.
+With the help of the link  "Favorites" :sparkling_heart:, located in the header of the page, the user can see all the products added to "Favorites" by marking the desired product with a heart.
 
 ###### :large_blue_diamond: Orders
 This link is in the header of the page and is intended only for administration:exclamation: All the orders wich were received from the customers are displayed on the Product Page.  
@@ -63,7 +63,7 @@ This link is in the header of the page and is intended only for administration:e
 ## Technical description
 
 A router was created for SPA application in order to display its particular component depending on hash. 
-The project is built with a help of Webpack, babel polifil is applied to create polyfills for ES6 + syntax.
+The project is built with a the help of Webpack, babel polifil is applied to create polyfills for ES6 + syntax.  
 :file_folder: The dist folder contains the project ready for hosting.  
 :file_folder: The src folder contains separate modules that are responsible for each component of the application.  
 :file_folder: The template folder contains page markup.  
