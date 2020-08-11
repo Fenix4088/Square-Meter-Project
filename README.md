@@ -11,68 +11,69 @@
 ## Description
 Square Meter Project is a SPA for an online real estate agency.:house:    
 
-All changes take place on one page.
+All changes take place on a single page.
 
 
 The SPA has a total of 18 different apartments from five different construction companies.  
 At the start of the page, the filter is loaded and all apartments available on the server are displayed.
 
 
-Square Meter Project consists of a main filter, object display fields, a ascending:small_red_triangle: /descending :small_red_triangle_down: filter by the real eatate price and area. There are two possible types of displaying objects.    
+Square Meter Project consists of a main filter, object display fields, an ascending:small_red_triangle: /descending :small_red_triangle_down: filter by the real eatate price and area. There are two possible types of displaying objects.    
 By clicking on the link "Favorites" in the header of the page, all objects that have been added to the favorites are displayed.  
-The link "Orders" downloads all orders that have arrived on the server and displays them.
-Кликнув по карточке квартиры пользователь сможет подробно ознакомиться с характиристиками данного продукта а так же подать заявку на его покупку.
+The link "Orders" downloads and displayes all orders that have arrived on the server.
+By clicking on the apartment card, the user will be able to familiarize himself with the characteristics of this product in detail, as well as apply for its purchase.
 
 ###### :large_blue_diamond: Filters
-Главный фильтр который мы видим при загрузки страници дает возможность пользователю более подробно формулировать свой запрос.  
-Пользователь получает возможность фильтровать обьекты по:
-  1. Названию строительной компании
-  2. Количеству комнат в квартире
-  3. Площади жилого помещения
-  4. Цене
+The main filter that we see when loading the page allows the user to formulate a more detailed request.  
+The user is anabled  to filter the objects  by the folowing features:
+  1. Name of a cunstruction company
+  2. Number of rooms in an apartment
+  3. Living space
+  4. Price
   
   
-После настройки фильтра пользователь должен произвести клик по кнопке отображения обьектов, после чего отобразяться только те обьекты которые подпадают под настройки фильтра.  
-К слову, кнопка отображения данных заранее показывает пользователю, сколько обьектов было найдено и был ли они найдены вообще. :sunglasses:
+After setting up the filter, the user should click on the button for displaying objects. After that only those objects that fall under the filter settings will be displayed.  
+By the way, the button for data displaying will show the user how many objects were found and whether they were found at all. :sunglasses:
 
-Фильтр в виде выпадающего меню ниже кнопки отображения дает возможность пользователю сортировать отображенные обьекты по цене и по площади.  
-Фильтр в виде двух иконок дает пользователю возможность выбора отображения обьектов. В виде карточек либо в виде таблици.   
-Если пользователь выбирает способ отображения - таблицу, то отображаеться еще один фильтр :thumbsup: который дает возможность отображать обьекты в отсортированом виде. Сортировка в табличном фильтре происходит по возрастанию и убыванию.  
-Табличный фильтр дает возможность сортировать по определенным параметрам.  
-Все настройки фильтра сохраняються. Это значит что после перезагрузки станици пользователь увидит все свои предыдущие настройки фильтра, если он были. :sunglasses:
+The filter, wich appiers in the form of  drop-down menu below the display button, allows the user to sort the displayed objects by price and area.    
+The filter in the form of two icons gives the user a choice of displaying objects either as cards or a table.   
+If the user chooses a table display, another filter will display :thumbsup: the sorted objects. The table uses an ascending and descending filter wich anables sorting by certain features.  
+All filter settings are saved. It means that after restarting the page, the user will see all his previous filter settings, if any. :sunglasses:
 
 ###### :large_blue_diamond: Item page
-Если кликнуть по карточке с товаром то отображаються подробные данные по этому товару:
-  1. Название строительной компании
-  2. Площадь
-  3. Количество комнат
-  4. Этаж
-  5. Цена
-  6. Цена за квадратный метр
-  7. Номер квартиры
-На странице товара пользователь может подать заявку на покупку квартиры нажав на кнопку "Book now". При клике отобразиться модальное окно которое дает возможность ввести сво имя и номер телефона :phone: для того что бы администрация могла связаться с заказчиком.  
+If you click on the card with a product, detailed data for this product will be displayed:
+  1. Name of a cunstruction company
+  2. Living space
+  3. Number of rooms in an apartment
+  4. Floor
+  5. Price
+  6. Price per square meter
+  7. Apartment number  
+  
+  
+On the product page, the user can apply for the purchase of an apartment by clicking on the "Book now" button. When you click, a modal window will appear that allows you to enter your name and phone number :phone:. Now the administration is able to get in touch with the customer.  
 
 
 ###### :large_blue_diamond: Favorites
-Перейдя по ссылке "Избранное" :sparkling_heart:, в шапке страници, пользователь может увидеть все товары которые он добавил в избраное отметив нужный товар сердечком.
+The link  "Favorites" :sparkling_heart:, in the header of the page, the user can see all the products that he added to the favorites by marking the desired product with a heart.
 
 ###### :large_blue_diamond: Orders
-Эта ссылка находиться в шапке страници и предназначена только для администрации:exclamation: Тут отображаються все заявки которые были получены путем заполнеия пользователями формы на Странице товара.  
+This link is in the header of the page and is intended only for administration:exclamation: All the orders wich were received from the customers are displayed on the Product Page.  
 
 ## Technical description
 
-Для SPA приложения был написан роутер, благодаря которому, в зависимости от hash отображаеться определенный компонет приложения. 
-Проект собран с помощью Webpack сборки, применен babel polifil для создания полифилов для синтаксиса ES6+.
-:file_folder: Папка dist содержит собраный проект, готовый для размещения на хостинг.  
-:file_folder: Папка src содержит отдельные модули которые отвечают за каждый компонент приложения.  
-:file_folder: Папка template содержит разметку страниц.  
-Практически вся разметка подгружаеться с помощью JavaScript. 
+A router was created for SPA application in order to display its particular component depending on hash. 
+The project is built with a help of Webpack, babel polifil is applied to create polyfills for ES6 + syntax.
+:file_folder: The dist folder contains the project ready for hosting.  
+:file_folder: The src folder contains separate modules that are responsible for each component of the application.  
+:file_folder: The template folder contains page markup.  
+Almost all markup is loaded using JavaScript. 
 
 ## :warning:Important:warning:
-В проект выполнин на английском языке, некоторые надписи вы можете встретить на русском это происходит из за того что был использован API русского сервера.    
-Проект работает во всех браузерах.  
-Не поддерживаеться RWD.  
-Нет возможности разместить работу на GitHubPages из за того что API проекта работает через HTTP протокол.:cold_sweat:
+The project is executed in English, some of the inscriptions you can find in Russian, this is due to the fact that the API of the Russian server was used.    
+The project is compatible with all types of browsers.  
+No RWD support.  
+There is no way to post work on GitHubPages due to the fact that the project's API works over the HTTP protocol.:cold_sweat:
 
 ## Links
 
