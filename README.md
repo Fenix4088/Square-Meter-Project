@@ -25,19 +25,19 @@ By clicking on the apartment card, the user will be able to familiarize himself 
 
 ###### :large_blue_diamond: Filters
 The main filter that we see when loading the page allows the user to formulate a more detailed request.  
-The user is anabled  to filter the objects  by the folowing features:
-  1. Name of a cunstruction company
+The user is enabled to filter the objects by the folowing features:
+  1. Name of a construction company
   2. Number of rooms in an apartment
   3. Living space
   4. Price
   
   
-After setting up the filter, the user should click on the button for displaying objects. After that only those objects that fall under the filter settings will be displayed.  
+After setting up the filter, the user should click on the button to display objects. After that only those objects that fall under the filter settings will be displayed.  
 By the way, the button for data displaying will show the user how many objects were found and whether they were found at all. :sunglasses:
 
-The filter, wich appiers in the form of  drop-down menu below the display button, allows the user to sort the displayed objects by price and area.    
+The filter, wich appears in the form of a drop-down menu below the display button, allows the user to sort out the displayed objects by price and area.    
 The filter in the form of two icons gives the user a choice of displaying objects either as cards or a table.   
-If the user chooses a table display, another filter will display :thumbsup: the sorted objects. The table uses an ascending and descending filter wich anables sorting by certain features.  
+If the user chooses a table display, another filter will sort :thumbsup: the objects by certain features. The table uses an ascending and descending type of filter.    
 All filter settings are saved. It means that after restarting the page, the user will see all his previous filter settings, if any. :sunglasses:
 
 ###### :large_blue_diamond: Item page
