@@ -50,7 +50,6 @@ export default function (state) {
 
     // Click on option to sort by price and area
     document.querySelector("#sort-cards-by").addEventListener("change", (e) => {
-        console.log(e.target.children);
         Array.from(e.target.children).forEach((option) => {
             if (option.selected) {
                 // Sort the array based on the selected option
@@ -141,7 +140,7 @@ export default function (state) {
         // Getting an object from LS
         const savedFilterRenderType = state.renderType;
         // If this object exists
-        savedFilterRenderType !== null ? (filterType = savedFilterRenderType) : (filterType = "cards");
+         filterType = savedFilterRenderType || "cards";
 
         if (filterType === "cards" || !filterType) {
             arr.forEach((item) => {
@@ -153,7 +152,6 @@ export default function (state) {
                 view.renderPanel(item, state.favourites.isFav(item.id));
             });
         }
-
         document.querySelector(`input[value=${filterType}]`).checked = true;
     }
 }
