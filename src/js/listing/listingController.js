@@ -152,6 +152,6 @@ export default function (state) {
                 view.renderPanel(item, state.favourites.isFav(item.id));
             });
         }
-        document.querySelector(`input[value=${filterType}]`).checked = true;
+        document.querySelector(`input[value="${filterType}"]`).checked = true;
     }
 }
