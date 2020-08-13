@@ -167,7 +167,7 @@ export function render(object, isFaved) {
                     />
                 </form>
                 <button class="modal__close">
-                    Закрыть
+                    Close
                 </button>
             </div>
         </div>
