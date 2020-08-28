@@ -23,7 +23,6 @@ const state = {
         pricemax: "",
     },
 };
-window.state = state;
 // * Router
 // Array with routes
 const routes = [
