@@ -78,4 +78,4 @@ There is no way to post work on GitHubPages as the project's API works over the 
 ## Links
 
 [API Documentation](http://jsproject.webcademy.ru/#items):point_left:  
-[Webcite Link]():point_left:
+[Webcite Link](http://yehorpliasov.ru/projects/Square-meter-demo/index.html):point_left:
