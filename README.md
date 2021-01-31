@@ -1,8 +1,8 @@
 # Square Meter Project
 
 ## Technology
-- HTML5
-- CSS3
+- HTML
+- CSS
 - JavaScript ES6+
 - Bootstrap
 - WebPack
